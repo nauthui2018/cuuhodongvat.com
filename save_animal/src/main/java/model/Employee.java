@@ -1,6 +1,5 @@
-package com.project.teamLongHuongNguyen.model;
+package model;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Employee {

@@ -1,4 +1,4 @@
-package com.project.teamLongHuongNguyen.model;
+package model;
 
 public class Province {
     private int provinceID;

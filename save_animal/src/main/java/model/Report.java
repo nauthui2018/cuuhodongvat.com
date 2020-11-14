@@ -1,8 +1,4 @@
-package com.project.teamLongHuongNguyen.model;
-
-import com.project.teamLongHuongNguyen.service.ValidateHelper;
-
-import java.util.HashMap;
+package model;
 
 public class Report {
     private int reportID;

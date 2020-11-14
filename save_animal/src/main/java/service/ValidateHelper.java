@@ -1,5 +1,7 @@
 package service;
 
+import model.Employee;
+
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -224,7 +226,7 @@ public boolean validateName(String name) {
         return isValid;
     }
 
-    private com.project.teamLongHuongNguyen.model.Employee employee=new com.project.teamLongHuongNguyen.model.Employee();
+    private Employee employee=new Employee();
 
     public boolean validateGenderLong(String gender) {
         boolean isValid = false;
@@ -288,7 +290,7 @@ public boolean validateName(String name) {
         if (!validateAddress(address)) {
             validationResult.put("Address", "'" + address + "' - Invalid address");
         }
-        if (!validateEmail(email)) {
+        if (!validateEmailLong(email)) {
             validationResult.put("Email", "'" + email + "' - Invalid email");
         }
         if (!validatePhone(phone)) {

@@ -1,9 +1,9 @@
-package com.project.teamLongHuongNguyen.controller;
+package controller;
 
-import com.project.teamLongHuongNguyen.model.Employee;
-import com.project.teamLongHuongNguyen.model.Report;
-import com.project.teamLongHuongNguyen.service.ReportService;
-import com.project.teamLongHuongNguyen.service.ValidateHelper;
+
+import model.Report;
+import service.ReportService;
+import service.ValidateHelper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -89,7 +89,7 @@ public class ReportServlet extends HttpServlet {
         List<Report> reportList = reportService.findAll();
         request.setAttribute("reportList", reportList);
         request.setAttribute("statusList",new Report().getStatusList());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("report/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/list.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -105,22 +105,12 @@ public class ReportServlet extends HttpServlet {
         response.sendRedirect("/reports");
     }
 
-//    private void statusList(HttpServletRequest request, HttpServletResponse response)
-//            throws SQLException, IOException, ServletException {
-//
-//        int id=Integer.parseInt(request.getParameter("id"));
-//        Report report=reportService.findOne(id);
-//        request.setAttribute("report", report);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("report/list.jsp");
-//        dispatcher.forward(request, response);
-//    }
-
     private void view(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("id"));
         Report report=reportService.findOne(id);
         request.setAttribute("report",report);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("report/view.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/view.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -129,7 +119,7 @@ public class ReportServlet extends HttpServlet {
         int id=Integer.parseInt(request.getParameter("id"));
         Report report=reportService.findOne(id);
         request.setAttribute("report",report);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("report/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/edit.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -155,7 +145,7 @@ public class ReportServlet extends HttpServlet {
             request.setAttribute("cmt","Report updated!");
         }
         request.setAttribute("report",report);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("report/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/edit.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -164,7 +154,7 @@ public class ReportServlet extends HttpServlet {
         int id=Integer.parseInt(request.getParameter("id"));
         Report report=reportService.findOne(id);
         request.setAttribute("report",report);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("report/delete.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/delete.jsp");
         request.setAttribute("cmt","Bạn có muốn xóa?");
         dispatcher.forward(request, response);
     }
@@ -178,7 +168,7 @@ public class ReportServlet extends HttpServlet {
             response.sendRedirect("/reports");
         }else {
             request.setAttribute("report",report);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("report/delete.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/delete.jsp");
             request.setAttribute("cmt","Report chưa làm hoặc đang làm nên không thể xóa?");
             dispatcher.forward(request, response);
         }
@@ -186,7 +176,7 @@ public class ReportServlet extends HttpServlet {
 
     private void showFormCreate(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("report/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/create.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -209,7 +199,7 @@ public class ReportServlet extends HttpServlet {
             request.setAttribute("cmt","Report đã được thêm vào danh sách");
         }
         request.setAttribute("report",report);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("report/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/create.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -218,7 +208,7 @@ public class ReportServlet extends HttpServlet {
         String reportName=request.getParameter("searchName");
         List<Report> reportList = reportService.findReportByName(reportName);
         request.setAttribute("reportList", reportList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("report/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/list.jsp");
         dispatcher.forward(request, response);
     }
 

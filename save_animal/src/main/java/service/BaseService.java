@@ -1,4 +1,4 @@
-package com.project.teamLongHuongNguyen.service;
+package service;
 
 import java.sql.SQLException;
 import java.util.List;

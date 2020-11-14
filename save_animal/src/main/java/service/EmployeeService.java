@@ -1,7 +1,8 @@
-package com.project.teamLongHuongNguyen.service;
+package service;
 
-import com.project.teamLongHuongNguyen.dao.EmployeeDao;
-import com.project.teamLongHuongNguyen.model.Employee;
+
+import dao.EmployeeDao;
+import model.Employee;
 
 import java.sql.SQLException;
 import java.util.List;

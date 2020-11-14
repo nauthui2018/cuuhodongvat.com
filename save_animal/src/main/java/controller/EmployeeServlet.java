@@ -1,11 +1,10 @@
-package com.project.teamLongHuongNguyen.controller;
+package controller;
 
-import com.project.teamLongHuongNguyen.dao.ProvinceDao;
-import com.project.teamLongHuongNguyen.model.Employee;
-import com.project.teamLongHuongNguyen.model.Province;
-import com.project.teamLongHuongNguyen.model.Report;
-import com.project.teamLongHuongNguyen.service.EmployeeService;
-import com.project.teamLongHuongNguyen.service.ValidateHelper;
+import dao.ProvinceDao;
+import model.Employee;
+import model.Province;
+import service.EmployeeService;
+import service.ValidateHelper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -87,7 +86,7 @@ public class EmployeeServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         List<Employee> employeeList =employeeService.findAll();
         request.setAttribute("employeeList", employeeList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("employee/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/employee/list.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -96,7 +95,7 @@ public class EmployeeServlet extends HttpServlet {
         int id=Integer.parseInt(request.getParameter("id"));
         Employee employee=employeeService.findOne(id);
         request.setAttribute("employee",employee);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("employee/view.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/employee/view.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -113,7 +112,7 @@ public class EmployeeServlet extends HttpServlet {
 
         List<Province> provinceList=provinceDao.findAll();
         request.setAttribute("provinceList",provinceList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("employee/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/employee/edit.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -162,7 +161,7 @@ public class EmployeeServlet extends HttpServlet {
         List<Province> provinceList=provinceDao.findAll();
         request.setAttribute("genderList",new Employee().getGenderList());
         request.setAttribute("provinceList",provinceList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("employee/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/employee/edit.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -171,7 +170,7 @@ public class EmployeeServlet extends HttpServlet {
         int id=Integer.parseInt(request.getParameter("id"));
         Employee employee=employeeService.findOne(id);
         request.setAttribute("employee",employee);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("employee/delete.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/employee/delete.jsp");
         request.setAttribute("cmt","Bạn có muốn xóa?");
         dispatcher.forward(request, response);
     }
@@ -191,7 +190,7 @@ public class EmployeeServlet extends HttpServlet {
         request.setAttribute("positionList",new Employee().getPositionList());
         request.setAttribute("degreeList",new Employee().getDegreeList());
         request.setAttribute("provinceList",provinceList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("employee/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/employee/create.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -238,7 +237,7 @@ public class EmployeeServlet extends HttpServlet {
         request.setAttribute("degreeList",new Employee().getDegreeList());
         request.setAttribute("positionList",new Employee().getPositionList());
         request.setAttribute("employee",employee);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("employee/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/employee/create.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -247,7 +246,7 @@ public class EmployeeServlet extends HttpServlet {
         String employeeName=request.getParameter("searchName");
         List<Employee> employeeList =employeeService.findByNameEmployee(employeeName);
         request.setAttribute("employeeList", employeeList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("employee/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/employee/list.jsp");
         dispatcher.forward(request, response);
     }
 }

@@ -1,6 +1,7 @@
-package com.project.teamLongHuongNguyen.dao;
+package dao;
 
-import com.project.teamLongHuongNguyen.model.Province;
+
+import model.Province;
 
 import java.sql.*;
 import java.util.ArrayList;

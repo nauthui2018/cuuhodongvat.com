@@ -1,8 +1,9 @@
-package com.project.teamLongHuongNguyen.controller;
+package controller;
 
-import com.project.teamLongHuongNguyen.model.Donor;
-import com.project.teamLongHuongNguyen.service.DonorService;
-import com.project.teamLongHuongNguyen.service.ValidateHelper;
+
+import model.Donor;
+import service.DonorService;
+import service.ValidateHelper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -81,7 +82,7 @@ public class DonorServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         List<Donor> donorList = donorService.findAll();
         request.setAttribute("donorList", donorList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("donor/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/list.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -91,7 +92,7 @@ public class DonorServlet extends HttpServlet {
         int id=Integer.parseInt(request.getParameter("id"));
         Donor donor= donorService.findOne(id);
         request.setAttribute("donor",donor);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("donor/view.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/view.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -100,7 +101,7 @@ public class DonorServlet extends HttpServlet {
         int id=Integer.parseInt(request.getParameter("id"));
         Donor donor=donorService.findOne(id);
         request.setAttribute("donor",donor);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("donor/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/edit.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -128,7 +129,7 @@ public class DonorServlet extends HttpServlet {
             request.setAttribute("cmt","Donor updated!");
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("donor/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/edit.jsp");
         request.setAttribute("donor",donor);
 
         dispatcher.forward(request, response);
@@ -139,7 +140,7 @@ public class DonorServlet extends HttpServlet {
         int id=Integer.parseInt(request.getParameter("id"));
         Donor donor=donorService.findOne(id);
         request.setAttribute("donor",donor);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("donor/delete.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/delete.jsp");
         request.setAttribute("cmt","Bạn có muốn xóa?");
         dispatcher.forward(request, response);
     }
@@ -154,7 +155,7 @@ public class DonorServlet extends HttpServlet {
 
     private void showFormCreate(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("donor/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/create.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -187,12 +188,12 @@ public class DonorServlet extends HttpServlet {
                 request.setAttribute("cmt","Donor đã được thêm vào danh sách");
             }
             request.setAttribute("donor",newDonor);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("donor/create.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/create.jsp");
             dispatcher.forward(request, response);
 
         }else {
             request.setAttribute("donor",donor);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("donor/editCu.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/editCu.jsp");
             request.setAttribute("cmt","Donor đã từng tài trợ cho nhóm bạn có muốn update không?");
             dispatcher.forward(request, response);
         }
@@ -203,7 +204,7 @@ public class DonorServlet extends HttpServlet {
         String donorName=request.getParameter("searchName");
         List<Donor> donorList = donorService.findOneByName(donorName);
         request.setAttribute("donorList", donorList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("donor/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/list.jsp");
         dispatcher.forward(request, response);
     }
 }
