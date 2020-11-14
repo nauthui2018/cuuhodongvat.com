@@ -1,7 +1,8 @@
-package com.project.teamLongHuongNguyen.service;
+package service;
 
-import com.project.teamLongHuongNguyen.dao.ReportDao;
-import com.project.teamLongHuongNguyen.model.Report;
+
+import dao.ReportDao;
+import model.Report;
 
 import java.sql.SQLException;
 import java.util.List;

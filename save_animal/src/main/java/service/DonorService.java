@@ -1,7 +1,8 @@
-package com.project.teamLongHuongNguyen.service;
+package service;
 
-import com.project.teamLongHuongNguyen.dao.DonorDao;
-import com.project.teamLongHuongNguyen.model.Donor;
+
+import dao.DonorDao;
+import model.Donor;
 
 import java.sql.SQLException;
 import java.util.List;

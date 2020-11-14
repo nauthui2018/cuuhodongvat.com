@@ -1,6 +1,7 @@
-package com.project.teamLongHuongNguyen.dao;
+package dao;
 
-import com.project.teamLongHuongNguyen.model.Report;
+
+import model.Report;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

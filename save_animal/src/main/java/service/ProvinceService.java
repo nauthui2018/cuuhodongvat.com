@@ -1,7 +1,8 @@
-package com.project.teamLongHuongNguyen.service;
+package service;
 
-import com.project.teamLongHuongNguyen.dao.ProvinceDao;
-import com.project.teamLongHuongNguyen.model.Province;
+
+import dao.ProvinceDao;
+import model.Province;
 
 import java.sql.SQLException;
 import java.util.List;
