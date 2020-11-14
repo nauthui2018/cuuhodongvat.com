@@ -310,7 +310,7 @@ public boolean validateName(String name) {
         if (!validateName(name)) {
             validationResult.put("Name", "'" + name + "' - Invalid name");
         }
-        if (!validateGender(gender)) {
+        if (!validateGenderLong(gender)) {
             validationResult.put("Gender", "'" + gender + "' - Invalid gender");
         }
         if (!validateDate(dob)) {
@@ -322,7 +322,7 @@ public boolean validateName(String name) {
         if (!validateAddress(address)) {
             validationResult.put("Address", "'" + address + "' - Invalid address");
         }
-        if (!validateEmail(email)) {
+        if (!validateEmailLong(email)) {
             validationResult.put("Email", "'" + email + "' - Invalid email");
         }
         if (!validateIntegerNumber(idProvince)) {
@@ -357,7 +357,7 @@ public boolean validateName(String name) {
         if (!validateAddress(address)) {
             validationResult.put("Address", "'" + address + "' - Invalid address");
         }
-        if (!validateEmail(email)) {
+        if (!validateEmailLong(email)) {
             validationResult.put("Email", "'" + email + "' - Invalid email");
         }
         if (!validatePhone(phone)) {
