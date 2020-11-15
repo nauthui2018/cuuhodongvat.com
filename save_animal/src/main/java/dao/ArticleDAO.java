@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArticleDAO implements IArticleDAO {
+public class ArticleDAO extends HelperDAO implements IArticleDAO {
     HelperDAO helper = new HelperDAO();
 
     public ArticleDAO() {
@@ -95,7 +95,7 @@ public class ArticleDAO implements IArticleDAO {
     }
 
     @Override
-    public Article selectById(int articleID) {
+    public Article findById(int articleID) {
         Article article = null;
         String query = "{CALL get_article_by_id(?)}";
         try (Connection connection = helper.getConnection();

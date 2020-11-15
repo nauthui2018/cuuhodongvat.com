@@ -99,7 +99,7 @@ public class ReportServlet extends HttpServlet {
 
         String status=request.getParameter("reportStatus");
 
-        Report report=reportService.findOne(id);
+        Report report=reportService.findById(id);
         report.setReportStatus(status);
         reportService.update(report);
         response.sendRedirect("/reports");
@@ -108,7 +108,7 @@ public class ReportServlet extends HttpServlet {
     private void view(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("id"));
-        Report report=reportService.findOne(id);
+        Report report=reportService.findById(id);
         request.setAttribute("report",report);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/view.jsp");
         dispatcher.forward(request, response);
@@ -117,7 +117,7 @@ public class ReportServlet extends HttpServlet {
     private void showFormEdit(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("id"));
-        Report report=reportService.findOne(id);
+        Report report=reportService.findById(id);
         request.setAttribute("report",report);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/edit.jsp");
         dispatcher.forward(request, response);
@@ -132,7 +132,7 @@ public class ReportServlet extends HttpServlet {
         String reportEmail=request.getParameter("reportEmail");
         String reportPhone=request.getParameter("reportPhone");
 
-        String reportStatus=reportService.findOne(id).getReportStatus();
+        String reportStatus=reportService.findById(id).getReportStatus();
 
         Report report=new Report(id,reportAddress,reportDescription,reportPersonName,reportEmail,reportPhone,reportStatus);
 
@@ -152,7 +152,7 @@ public class ReportServlet extends HttpServlet {
     private void showFormDelete(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("id"));
-        Report report=reportService.findOne(id);
+        Report report=reportService.findById(id);
         request.setAttribute("report",report);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/report/delete.jsp");
         request.setAttribute("cmt","Bạn có muốn xóa?");
@@ -162,9 +162,9 @@ public class ReportServlet extends HttpServlet {
     private void delete(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("reportID"));
-        Report report=reportService.findOne(id);
+        Report report=reportService.findById(id);
         if (report.getReportStatus().equals("Xong rồi")){
-            reportService.delete(id);
+            reportService.delete(report);
             response.sendRedirect("/reports");
         }else {
             request.setAttribute("report",report);
@@ -195,7 +195,7 @@ public class ReportServlet extends HttpServlet {
         if (validate.size()>0){
             request.setAttribute("validate",validate);
         }else {
-            reportService.save(report);
+            reportService.add(report);
             request.setAttribute("cmt","Report đã được thêm vào danh sách");
         }
         request.setAttribute("report",report);

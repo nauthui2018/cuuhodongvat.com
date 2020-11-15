@@ -55,8 +55,9 @@ public class SubcriberServlet extends HttpServlet {
 
     private void deleteSubcriber(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int id = Integer.parseInt(request.getParameter("id"));
-        subcribersDAO.delete(id);
-        List<Subcribers> subcriber = subcribersDAO.getAll();
+        Subcribers subcribers = subcribersDAO.findById(id);
+        subcribersDAO.delete(subcribers);
+        List<Subcribers> subcriber = subcribersDAO.findAll();
         request.setAttribute("subcriber", subcriber);
         request.setAttribute("message", "Subcriber is deleted!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/subcriber/list.jsp");
@@ -143,7 +144,7 @@ public class SubcriberServlet extends HttpServlet {
 
     private void listSubcriber(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        List<Subcribers> subcriber = subcribersDAO.getAll();
+        List<Subcribers> subcriber = subcribersDAO.findAll();
         request.setAttribute("subcriber", subcriber);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/subcriber/list.jsp");
         dispatcher.forward(request, response);
@@ -174,8 +175,8 @@ public class SubcriberServlet extends HttpServlet {
         String email = request.getParameter("email");
         String mobile = request.getParameter("mobile");
         Subcribers subcriber = new Subcribers(firstName, lastName, email, mobile);
-        subcribersDAO.save(subcriber);
-        List<Subcribers> subcribers = subcribersDAO.getAll();
+        subcribersDAO.add(subcriber);
+        List<Subcribers> subcribers = subcribersDAO.findAll();
         request.setAttribute("subcriber", subcribers);
         request.setAttribute("message", "A new Subcriber is added!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/subcriber/list.jsp");
@@ -192,7 +193,7 @@ public class SubcriberServlet extends HttpServlet {
         Subcribers subcriber = new Subcribers(id, firstName, lastName, email, mobile);
         subcribersDAO.update(subcriber);
 
-        List<Subcribers> subcribers = subcribersDAO.getAll();
+        List<Subcribers> subcribers = subcribersDAO.findAll();
         request.setAttribute("subcriber", subcribers);
         request.setAttribute("message", "Subcriber is updated!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/subcriber/list.jsp");

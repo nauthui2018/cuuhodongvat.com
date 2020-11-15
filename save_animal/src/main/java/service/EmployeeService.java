@@ -16,13 +16,13 @@ public class EmployeeService implements BaseService<Employee> {
     }
 
     @Override
-    public Employee findOne(int id) {
-        return employeeDao.findOne(id);
+    public Employee findById(int id) {
+        return employeeDao.findById(id);
     }
 
     @Override
-    public void save(Employee employee) throws SQLException {
-            employeeDao.save(employee);
+    public void add(Employee employee) throws SQLException {
+            employeeDao.add(employee);
     }
 
     @Override
@@ -31,8 +31,8 @@ public class EmployeeService implements BaseService<Employee> {
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
-        return employeeDao.delete(id);
+    public boolean delete(Employee employee) throws SQLException {
+        return employeeDao.delete(employee);
     }
 
     public List<Employee> findByNameEmployee(String name) {

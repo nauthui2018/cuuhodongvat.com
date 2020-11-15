@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class VolunteersDAO extends ConectionHelper implements BaseDAONguyen<Volunteers> {
+public class VolunteersDAO extends HelperDAO implements BaseDAO<Volunteers> {
 
     private static final String INSERT_VOLUNTEER_SQL = "INSERT INTO volunteers" + "  (volunteerFirstName, volunteerLastName, volunteerDOB,volunteerAddresID,volunteerMobile,volunteerEmail,volunteerImage,volunteerPersonalCode,volunteerGender,volunteerRegistrationProgram,volunteerReasonForRegistration,volunteerStatus) VALUES " +
             " (?, ?, ?,?,?,?,?,?,?,?,?,?);";
@@ -21,7 +21,7 @@ public class VolunteersDAO extends ConectionHelper implements BaseDAONguyen<Volu
     private static final String SEARCH_WITH_NAME = "SELECT * from volunteers where concat(volunteerFirstName,' ',volunteerLastName) LIKE concat('%',?,'%') ;";
 
     @Override
-    public List<Volunteers> getAll() throws Exception {
+    public List<Volunteers> findAll() throws Exception {
         List<Volunteers> volunteers = new ArrayList<>();
 
         try (Connection connection = getConnection();
@@ -53,7 +53,7 @@ public class VolunteersDAO extends ConectionHelper implements BaseDAONguyen<Volu
     }
 
     @Override
-    public  void save(Volunteers volunteers) throws Exception {
+    public  void add(Volunteers volunteers) throws Exception {
             try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_VOLUNTEER_SQL)) {
                 preparedStatement.setString(1, volunteers.getFirstName());
                 preparedStatement.setString(2, volunteers.getLastName());
@@ -100,11 +100,11 @@ public class VolunteersDAO extends ConectionHelper implements BaseDAONguyen<Volu
 
 
     @Override
-    public boolean delete(int id) throws Exception {
+    public boolean delete(Volunteers volunteers) throws Exception {
         boolean rowDeleted;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_VOLUNTEER_SQL);) {
-            statement.setInt(1, id);
+            statement.setInt(1, volunteers.getId());
             rowDeleted = statement.executeUpdate() > 0;
         }
         return rowDeleted;

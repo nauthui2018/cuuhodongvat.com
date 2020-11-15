@@ -7,7 +7,7 @@ public class Volunteers {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-    private int addresID;
+    private int addressID;
     private String mobile;
     private String email;
     private String image;
@@ -22,11 +22,11 @@ public class Volunteers {
 
     }
 
-    public Volunteers(String firstName, String lastName, Date dateOfBirth, int addresID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration) {
+    public Volunteers(String firstName, String lastName, Date dateOfBirth, int addressID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.addresID = addresID;
+        this.addressID = addressID;
         this.mobile = mobile;
         this.email = email;
         this.image = image;
@@ -36,12 +36,12 @@ public class Volunteers {
         this.reasonForRegistration = reasonForRegistration;
     }
 
-    public Volunteers(int id, String firstName, String lastName, Date dateOfBirth, int addresID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration) {
+    public Volunteers(int id, String firstName, String lastName, Date dateOfBirth, int addressID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.addresID = addresID;
+        this.addressID = addressID;
         this.mobile = mobile;
         this.email = email;
         this.image = image;
@@ -51,12 +51,12 @@ public class Volunteers {
         this.reasonForRegistration = reasonForRegistration;
     }
 
-    public Volunteers(int id, String firstName, String lastName, Date dateOfBirth, int addresID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration, String status) {
+    public Volunteers(int id, String firstName, String lastName, Date dateOfBirth, int addressID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration, String status) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.addresID = addresID;
+        this.addressID = addressID;
         this.mobile = mobile;
         this.email = email;
         this.image = image;
@@ -67,11 +67,11 @@ public class Volunteers {
         this.status = status;
     }
 
-    public Volunteers(String firstName, String lastName, Date dateOfBirth, int addresID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration, String status) {
+    public Volunteers(String firstName, String lastName, Date dateOfBirth, int addressID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration, String status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.addresID = addresID;
+        this.addressID = addressID;
         this.mobile = mobile;
         this.email = email;
         this.image = image;
@@ -115,11 +115,11 @@ public class Volunteers {
     }
 
     public int getAddress() {
-        return addresID;
+        return addressID;
     }
 
     public void setAddress(int addresID) {
-        this.addresID = addresID;
+        this.addressID = addresID;
     }
 
     public String getMobile() {
@@ -186,12 +186,12 @@ public class Volunteers {
         this.status = status;
     }
 
-    public int getAddresID() {
-        return addresID;
+    public int getAddressID() {
+        return addressID;
     }
 
-    public void setAddresID(int addresID) {
-        this.addresID = addresID;
+    public void setAddressID(int addressID) {
+        this.addressID = addressID;
     }
 
     public String[] getStatusList() {

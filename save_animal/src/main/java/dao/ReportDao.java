@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportDao extends DAOHelper implements BaseDaoLong<Report> {
+public class ReportDao extends HelperDAO implements BaseDAO<Report> {
     private static final String SELECT_ALL_REPORT="SELECT * FROM savinganimal.reports;";
     private static final String SELECT_REPORT_BY_ID ="SELECT * FROM savinganimal.reports where reportID=?;";
     private static final String INSERT_NEW_REPORT ="INSERT INTO `savinganimal`.`reports`(`reportAddress`,`reportDescription`,`reportPersonName`,`reportEmail`,`reportPhone`,`reportStatus`)VALUES(?,?,?,?,?,?);";
@@ -46,7 +46,7 @@ public class ReportDao extends DAOHelper implements BaseDaoLong<Report> {
         return reportList;
     }
 
-    public Report findOne(int id) {
+    public Report findById(int id) {
         Report report = null;
 
         try (Connection connection = getConnection();
@@ -72,7 +72,7 @@ public class ReportDao extends DAOHelper implements BaseDaoLong<Report> {
         return report;
     }
 
-    public void save(Report report)throws SQLException {
+    public void add(Report report)throws SQLException {
         try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEW_REPORT)) {
             preparedStatement.setString(1, report.getReportAddress());
             preparedStatement.setString(2, report.getReportDescription());
@@ -105,10 +105,10 @@ public class ReportDao extends DAOHelper implements BaseDaoLong<Report> {
         return rowUpdated;
     }
 
-    public boolean delete(int id)throws SQLException {
+    public boolean delete(Report report)throws SQLException {
         boolean rowDeleted;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_REPORT_BY_ID);) {
-            statement.setInt(1, id);
+            statement.setInt(1, report.getReportID());
             rowDeleted = statement.executeUpdate() > 0;
         }
         return rowDeleted;

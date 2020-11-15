@@ -1,13 +1,12 @@
 package dao;
 
-
 import model.Province;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProvinceDao extends DAOHelper implements BaseDaoLong<Province> {
+public class ProvinceDao extends HelperDAO implements BaseDAO<Province> {
     private static String SELECT_ALL_PROVINCE="SELECT * FROM savinganimal.provinces;";
     private static String SELECT_PROVINCE_BY_ID="SELECT * FROM savinganimal.provinces where provinceID=?;";
 
@@ -36,7 +35,7 @@ public class ProvinceDao extends DAOHelper implements BaseDaoLong<Province> {
     }
 
     @Override
-    public Province findOne(int id) {
+    public Province findById(int id) {
         Province province = null;
 
         try (Connection connection = getConnection();
@@ -59,7 +58,7 @@ public class ProvinceDao extends DAOHelper implements BaseDaoLong<Province> {
     }
 
     @Override
-    public void save(Province e) throws SQLException {
+    public void add(Province e) throws SQLException {
 
     }
 
@@ -69,7 +68,7 @@ public class ProvinceDao extends DAOHelper implements BaseDaoLong<Province> {
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(Province e) throws SQLException {
         return false;
     }
 

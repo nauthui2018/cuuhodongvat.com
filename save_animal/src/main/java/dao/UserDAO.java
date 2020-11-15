@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO implements BaseDAO<User> {
+public class UserDAO extends HelperDAO implements BaseDAO<User> {
     HelperDAO helper = new HelperDAO();
 
     public User login(String userUsername, String userPassword) {
@@ -115,7 +115,7 @@ public class UserDAO implements BaseDAO<User> {
     }
 
     @Override
-    public User selectById(int userID) {
+    public User findById(int userID) {
         String query = "{CALL get_user_by_id()}";
         User user = new User();
         try (Connection connection = helper.getConnection();

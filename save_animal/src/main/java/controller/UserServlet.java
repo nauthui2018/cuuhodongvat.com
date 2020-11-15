@@ -254,7 +254,7 @@ public class UserServlet extends HttpServlet {
                 request.setAttribute("message", "This is your account. Please login by another account to delete!");
                 dispatcher = request.getRequestDispatcher("views/user/listUser.jsp");
             } else {
-                userService.delete(userService.selectById(userID));
+                userService.delete(userService.findById(userID));
                 List<User> listUsers = userService.findAll();
                 request.setAttribute("listUsers", listUsers);
                 dispatcher = request.getRequestDispatcher("views/user/listUser.jsp");

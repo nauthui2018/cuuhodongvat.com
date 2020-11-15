@@ -147,7 +147,7 @@ public class AnimalServlet extends HttpServlet {
 
     private void listAnimal(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        List<Animals> animal = animalsDAO.getAll();
+        List<Animals> animal = animalsDAO.findAll();
         request.setAttribute("animal", animal);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/animal/list.jsp");
         dispatcher.forward(request, response);
@@ -186,10 +186,10 @@ public class AnimalServlet extends HttpServlet {
         int protectionLevel = Integer.parseInt(request.getParameter("protectionLevel"));
         int staffID = Integer.parseInt(request.getParameter("staffID"));
         Animals animal = new Animals(name, image, description, protectionLevel, staffID);
-        animalsDAO.save(animal);
+        animalsDAO.add(animal);
 //        List<Type> typeList = typeDAO.getAll();
 //        request.setAttribute("typeList", typeList);
-        List<Animals> animals = animalsDAO.getAll();
+        List<Animals> animals = animalsDAO.findAll();
         request.setAttribute("animal", animals);
         request.setAttribute("message", "A new Animal is added!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/animal/list.jsp");
@@ -210,7 +210,7 @@ public class AnimalServlet extends HttpServlet {
         Animals animal = new Animals(id, name, image, description, protectionLevel, staffID);
         animalsDAO.update(animal);
 //        request.setAttribute("animal", animal);
-        List<Animals> animals = animalsDAO.getAll();
+        List<Animals> animals = animalsDAO.findAll();
         request.setAttribute("animal", animals);
         request.setAttribute("message", "Animal is updated!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/animal/list.jsp");
@@ -219,8 +219,9 @@ public class AnimalServlet extends HttpServlet {
 
     private void deleteAnimal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int id = Integer.parseInt(request.getParameter("id"));
-        animalsDAO.delete(id);
-        List<Animals> animal = animalsDAO.getAll();
+        Animals animals = animalsDAO.findById(id);
+        animalsDAO.delete(animals);
+        List<Animals> animal = animalsDAO.findAll();
         request.setAttribute("animal", animal);
         request.setAttribute("message", "Animal is deleted!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/animal/list.jsp");

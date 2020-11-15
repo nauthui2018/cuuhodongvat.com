@@ -160,7 +160,7 @@ public class ArticleServlet extends HttpServlet {
         RequestDispatcher dispatcher;
         if (user != null) {
             int articleID = Integer.parseInt(request.getParameter("articleID"));
-            Article article = articleService.selectById(articleID);
+            Article article = articleService.findById(articleID);
             request.setAttribute("article", article);
             dispatcher = request.getRequestDispatcher("views/article/viewArticle.jsp");
         } else {
@@ -189,7 +189,7 @@ public class ArticleServlet extends HttpServlet {
         RequestDispatcher dispatcher;
         if (user != null) {
             int articleID = Integer.parseInt(request.getParameter("articleID"));
-            Article article = articleService.selectById(articleID);
+            Article article = articleService.findById(articleID);
             request.setAttribute("article", article);
             dispatcher = request.getRequestDispatcher("views/article/updateArticle.jsp");
         } else {
@@ -205,7 +205,7 @@ public class ArticleServlet extends HttpServlet {
         RequestDispatcher dispatcher;
         if (user != null) {
             int articleID = Integer.parseInt(request.getParameter("articleID"));
-            Article article = articleService.selectById(articleID);
+            Article article = articleService.findById(articleID);
             request.setAttribute("article", article);
             dispatcher = request.getRequestDispatcher("views/article/deleteArticle.jsp");
         } else {
@@ -289,7 +289,7 @@ public class ArticleServlet extends HttpServlet {
         RequestDispatcher dispatcher;
         if (user != null) {
             int articleID = Integer.parseInt(request.getParameter("articleID"));
-            Article article = articleService.selectById(articleID);
+            Article article = articleService.findById(articleID);
             articleService.delete(article);
             List<Article> listArticles = articleService.findAll();
             request.setAttribute("listArticles", listArticles);
