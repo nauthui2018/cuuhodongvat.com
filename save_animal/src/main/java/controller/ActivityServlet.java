@@ -148,7 +148,7 @@ public class ActivityServlet extends HttpServlet {
         RequestDispatcher dispatcher;
         if (user != null) {
             int activityID = Integer.parseInt(request.getParameter("activityID"));
-            Activity activity = activityService.selectById(activityID);
+            Activity activity = activityService.findById(activityID);
             request.setAttribute("activity", activity);
 //            List<Sponsor> listSponsors = sponsorService.findAll();
 //            request.setAttribute("listSponsors", listSponsors);
@@ -183,7 +183,7 @@ public class ActivityServlet extends HttpServlet {
 //            List<Sponsor> listSponsors = sponsorService.findAll();
 //            request.setAttribute("listSponsors", listSponsors);
             int activityID = Integer.parseInt(request.getParameter("activityID"));
-            Activity activity = activityService.selectById(activityID);
+            Activity activity = activityService.findById(activityID);
             request.setAttribute("activity", activity);
             dispatcher = request.getRequestDispatcher("views/activity/updateActivity.jsp");
         } else {
@@ -201,7 +201,7 @@ public class ActivityServlet extends HttpServlet {
 //            List<Sponsor> listSponsors = sponsorService.findAll();
 //            request.setAttribute("listSponsors", listSponsors);
             int activityID = Integer.parseInt(request.getParameter("activityID"));
-            Activity activity = activityService.selectById(activityID);
+            Activity activity = activityService.findById(activityID);
             request.setAttribute("activity", activity);
             dispatcher = request.getRequestDispatcher("views/activity/deleteActivity.jsp");
         } else {
@@ -285,7 +285,7 @@ public class ActivityServlet extends HttpServlet {
         RequestDispatcher dispatcher;
         if (user != null) {
             int activityID = Integer.parseInt(request.getParameter("activityID"));
-            Activity activity = activityService.selectById(activityID);
+            Activity activity = activityService.findById(activityID);
             activityService.delete(activity);
             List<Activity> listActivities = activityService.findAll();
             request.setAttribute("listActivities", listActivities);

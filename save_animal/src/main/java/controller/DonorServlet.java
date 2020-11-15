@@ -90,7 +90,7 @@ public class DonorServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
 
         int id=Integer.parseInt(request.getParameter("id"));
-        Donor donor= donorService.findOne(id);
+        Donor donor= donorService.findById(id);
         request.setAttribute("donor",donor);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/view.jsp");
         dispatcher.forward(request, response);
@@ -99,7 +99,7 @@ public class DonorServlet extends HttpServlet {
     private void showFormEdit(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("id"));
-        Donor donor=donorService.findOne(id);
+        Donor donor=donorService.findById(id);
         request.setAttribute("donor",donor);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/edit.jsp");
         dispatcher.forward(request, response);
@@ -138,7 +138,7 @@ public class DonorServlet extends HttpServlet {
     private void showFormDelete(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("id"));
-        Donor donor=donorService.findOne(id);
+        Donor donor=donorService.findById(id);
         request.setAttribute("donor",donor);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/donor/delete.jsp");
         request.setAttribute("cmt","Bạn có muốn xóa?");
@@ -148,8 +148,8 @@ public class DonorServlet extends HttpServlet {
     private void delete(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("id"));
-        Donor donor=donorService.findOne(id);
-        donorService.delete(id);
+        Donor donor=donorService.findById(id);
+        donorService.delete(donor);
         response.sendRedirect("/donors");
     }
 
@@ -184,7 +184,7 @@ public class DonorServlet extends HttpServlet {
             if (validate.size()>0){
                 request.setAttribute("validate",validate);
             }else {
-                donorService.save(newDonor);
+                donorService.add(newDonor);
                 request.setAttribute("cmt","Donor đã được thêm vào danh sách");
             }
             request.setAttribute("donor",newDonor);

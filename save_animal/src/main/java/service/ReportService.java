@@ -17,13 +17,13 @@ public class ReportService implements BaseService<Report> {
     }
 
     @Override
-    public Report findOne(int id) {
-        return reportDao.findOne(id);
+    public Report findById(int id) {
+        return reportDao.findById(id);
     }
 
     @Override
-    public void save(Report report) throws SQLException {
-        reportDao.save(report);
+    public void add(Report report) throws SQLException {
+        reportDao.add(report);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class ReportService implements BaseService<Report> {
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
-        return reportDao.delete(id);
+    public boolean delete(Report report) throws SQLException {
+        return reportDao.delete(report);
     }
 
     public List<Report> findReportByName(String name) {

@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeDao extends DAOHelper implements BaseDaoLong<Employee> {
+public class EmployeeDao extends HelperDAO implements BaseDAO<Employee> {
     private ProvinceDao provinceDao=new ProvinceDao();
 
     private static final String SELECT_ALL_EMPLOYEE ="SELECT * FROM savinganimal.employee;";
@@ -43,7 +43,7 @@ public class EmployeeDao extends DAOHelper implements BaseDaoLong<Employee> {
                 String employeePhone=rs.getString("employeePhone");
                 String employeeAddress=rs.getString("employeeAddress");
                 String employeeCMND=rs.getString("employeeCMND");
-                Province province=provinceDao.findOne(rs.getInt("employeeProvinceCode"));
+                Province province=provinceDao.findById(rs.getInt("employeeProvinceCode"));
                 String employeeImage=rs.getString("employeeImage");
                 String employeeGender=rs.getString("employeeGender");
                 Date employeeJoinDate=Date.valueOf(rs.getString("employeeJoinDate"));
@@ -56,7 +56,7 @@ public class EmployeeDao extends DAOHelper implements BaseDaoLong<Employee> {
     }
 
     @Override
-    public Employee findOne(int id) {
+    public Employee findById(int id) {
         Employee employee = null;
 
         try (Connection connection = getConnection();
@@ -78,7 +78,7 @@ public class EmployeeDao extends DAOHelper implements BaseDaoLong<Employee> {
                 String employeePhone=rs.getString("employeePhone");
                 String employeeAddress=rs.getString("employeeAddress");
                 String employeeCMND=rs.getString("employeeCMND");
-                Province province=provinceDao.findOne(rs.getInt("employeeProvinceCode"));
+                Province province=provinceDao.findById(rs.getInt("employeeProvinceCode"));
                 String employeeImage=rs.getString("employeeImage");
                 String employeeGender=rs.getString("employeeGender");
                 Date employeeJoinDate=Date.valueOf(rs.getString("employeeJoinDate"));
@@ -91,7 +91,7 @@ public class EmployeeDao extends DAOHelper implements BaseDaoLong<Employee> {
     }
 
     @Override
-    public void save(Employee employee) throws SQLException {
+    public void add(Employee employee) throws SQLException {
         try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEW_EMPLOYEE)) {
             preparedStatement.setString(1, employee.getEmployeeName());
             preparedStatement.setString(2, employee.getEmployeePosition());
@@ -139,10 +139,10 @@ public class EmployeeDao extends DAOHelper implements BaseDaoLong<Employee> {
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(Employee employee) throws SQLException {
         boolean rowDeleted;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_EMPLOYEE_BY_ID);) {
-            statement.setInt(1, id);
+            statement.setInt(1, employee.getEmployeeID());
             rowDeleted = statement.executeUpdate() > 0;
         }
         return rowDeleted;
@@ -172,7 +172,7 @@ public class EmployeeDao extends DAOHelper implements BaseDaoLong<Employee> {
                 String employeePhone=rs.getString("employeePhone");
                 String employeeAddress=rs.getString("employeeAddress");
                 String employeeCMND=rs.getString("employeeCMND");
-                Province province=provinceDao.findOne(rs.getInt("employeeProvinceCode"));
+                Province province=provinceDao.findById(rs.getInt("employeeProvinceCode"));
                 String employeeImage=rs.getString("employeeImage");
                 String employeeGender=rs.getString("employeeGender");
                 Date employeeJoinDate=Date.valueOf(rs.getString("employeeJoinDate"));

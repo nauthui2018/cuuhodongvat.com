@@ -4,9 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface BaseService<T> {
-    List<T> findAll();
-    T findOne(int id);
-    void save(T e) throws SQLException;
-    boolean update(T e) throws SQLException;
-    boolean delete(int id) throws SQLException;
+
+    public List<T> findAll() throws Exception;
+    public void add(T t) throws Exception;
+    public boolean delete(T t) throws Exception;
+    public boolean update(T t) throws Exception;
+    public T findById(int id) throws Exception;
 }

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubcribersDAO extends ConectionHelper implements BaseDAONguyen<Subcribers> {
+public class SubcribersDAO extends HelperDAO implements BaseDAO<Subcribers> {
     private static final String INSERT_SUBCRIBER_SQL = "INSERT INTO subcribers" + "  (subcriberFirstName, subcriberLastName, subcriberEmail,subcriberMobile) VALUES " +
             " (?, ?, ?,?);";
     private static final String SELECT_SUBCRIBER_BY_ID = "select * from subcribers where subcriberID =?";
@@ -20,7 +20,7 @@ public class SubcribersDAO extends ConectionHelper implements BaseDAONguyen<Subc
     private static final String SEARCH_WITH_NAME = "SELECT * from subcribers where concat(subcriberFirstName,' ',subcriberLastName) LIKE concat('%',?,'%');";
     private static final String VIEW_LIST_APPROVED= "select * from subcribers where subcriberStatus =approved;";
     @Override
-    public List<Subcribers> getAll() throws Exception {
+    public List<Subcribers> findAll() throws Exception {
         List<Subcribers> subcribers = new ArrayList<>();
 
         try (Connection connection = getConnection();
@@ -45,7 +45,7 @@ public class SubcribersDAO extends ConectionHelper implements BaseDAONguyen<Subc
 
 
     @Override
-    public void save(Subcribers subcribers) throws Exception {
+    public void add(Subcribers subcribers) throws Exception {
         try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SUBCRIBER_SQL)) {
             preparedStatement.setString(1, subcribers.getFirstName());
             preparedStatement.setString(2, subcribers.getLastName());
@@ -75,11 +75,11 @@ public class SubcribersDAO extends ConectionHelper implements BaseDAONguyen<Subc
 
 
     @Override
-    public boolean delete(int id) throws Exception {
+    public boolean delete(Subcribers subcribers) throws Exception {
         boolean rowDeleted;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_SUBCRIBER_SQL);) {
-            statement.setInt(1, id);
+            statement.setInt(1, subcribers.getId());
             rowDeleted = statement.executeUpdate() > 0;
         }
         return rowDeleted;

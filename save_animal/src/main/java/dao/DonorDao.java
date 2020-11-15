@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DonorDao extends DAOHelper implements BaseDaoLong<Donor> {
+public class DonorDao extends HelperDAO implements BaseDAO<Donor> {
     private static final String SELECT_ALL_DONOR="SELECT * FROM savinganimal.donor;";
     private static final String SELECT_DONOR_BY_ID="SELECT * FROM savinganimal.donor where donorID=?;";
     private static final String INSERT_NEW_DONOR="INSERT INTO `savinganimal`.`donor`(`donorName`,`donorSurrogate`,`donorAddress`,`donorEmail`,`donorPhone`,`donorMoney`,`donorTotalMoney`,`donorImage`)VALUES(?,?,?,?,?,?,?,?);";
@@ -23,14 +23,10 @@ public class DonorDao extends DAOHelper implements BaseDaoLong<Donor> {
     @Override
     public List<Donor> findAll() {
         List<Donor> donorList = new ArrayList<>();
-
         try (Connection connection = getConnection();
-
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_DONOR);) {
             System.out.println(preparedStatement);
-
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 int reportID=rs.getInt("donorID");
                 String donorName = rs.getString("donorName");
@@ -50,7 +46,7 @@ public class DonorDao extends DAOHelper implements BaseDaoLong<Donor> {
     }
 
     @Override
-    public Donor findOne(int id) {
+    public Donor findById(int id) {
         Donor donor = null;
 
         try (Connection connection = getConnection();
@@ -78,7 +74,7 @@ public class DonorDao extends DAOHelper implements BaseDaoLong<Donor> {
     }
 
     @Override
-    public void save(Donor donor) throws SQLException {
+    public void add(Donor donor) throws SQLException {
         try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEW_DONOR)) {
             preparedStatement.setString(1, donor.getDonorName());
             preparedStatement.setString(2, donor.getDonorSurrogate());
@@ -114,10 +110,10 @@ public class DonorDao extends DAOHelper implements BaseDaoLong<Donor> {
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(Donor donor) throws SQLException {
         boolean rowDeleted;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_DONOR_BY_ID);) {
-            statement.setInt(1, id);
+            statement.setInt(1, donor.getDonorID());
             rowDeleted = statement.executeUpdate() > 0;
         }
         return rowDeleted;

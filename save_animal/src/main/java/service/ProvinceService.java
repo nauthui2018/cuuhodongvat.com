@@ -15,12 +15,12 @@ public class ProvinceService implements BaseService<Province> {
     }
 
     @Override
-    public Province findOne(int id) {
-        return provinceDao.findOne(id);
+    public Province findById(int id) {
+        return provinceDao.findById(id);
     }
 
     @Override
-    public void save(Province province) throws SQLException {
+    public void add(Province province) throws SQLException {
 
     }
 
@@ -30,7 +30,7 @@ public class ProvinceService implements BaseService<Province> {
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(Province province) throws SQLException {
         return false;
     }
 }

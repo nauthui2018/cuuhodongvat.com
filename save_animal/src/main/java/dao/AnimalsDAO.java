@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimalsDAO extends ConectionHelper implements BaseDAONguyen<Animals> {
+public class AnimalsDAO extends HelperDAO implements BaseDAO<Animals> {
     private static final String INSERT_ANIMAL_SQL = "INSERT INTO animals" + "  (animalImage, animalDescription, animalProtectionLevel,animalName,staffID) VALUES " +
             " (?, ?, ?,?,?);";
     private static final String SELECT_ANIMAL_BY_ID = "select *  from animals where animalID =?;";
@@ -23,7 +23,7 @@ public class AnimalsDAO extends ConectionHelper implements BaseDAONguyen<Animals
 
 
     @Override
-    public List<Animals> getAll() throws Exception {
+    public List<Animals> findAll() throws Exception {
         List<Animals> animals = new ArrayList<>();
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_ANIMAL);) {
@@ -47,7 +47,7 @@ public class AnimalsDAO extends ConectionHelper implements BaseDAONguyen<Animals
 
 
     @Override
-    public void save(Animals animal) throws Exception {
+    public void add(Animals animal) throws Exception {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ANIMAL_SQL)) {
             preparedStatement.setString(1, animal.getImage());
@@ -80,11 +80,11 @@ public class AnimalsDAO extends ConectionHelper implements BaseDAONguyen<Animals
 
 
     @Override
-    public boolean delete(int id) throws Exception {
+    public boolean delete(Animals animal) throws Exception {
         boolean rowDeleted;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_ANIMAL_SQL);) {
-            statement.setInt(1, id);
+            statement.setInt(1, animal.getId());
             rowDeleted = statement.executeUpdate() > 0;
         }
         return rowDeleted;

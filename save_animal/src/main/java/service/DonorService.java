@@ -16,24 +16,24 @@ public class DonorService implements BaseService<Donor> {
     }
 
     @Override
-    public Donor findOne(int id) {
-        return donorDao.findOne(id);
+    public Donor findById(int id) {
+        return donorDao.findById(id);
     }
 
     @Override
-    public void save(Donor donor) throws SQLException {
-        donorDao.save(donor);
+    public void add(Donor donor) throws SQLException {
+        donorDao.add(donor);
     }
 
     @Override
     public boolean update(Donor donor) throws SQLException {
-        donorDao.findOne(donor.getDonorID());
+        donorDao.findById(donor.getDonorID());
         return donorDao.update(donor);
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
-        return donorDao.delete(id);
+    public boolean delete(Donor donor) throws SQLException {
+        return donorDao.delete(donor);
     }
 
     public Donor findByDonorName(String donorName) {

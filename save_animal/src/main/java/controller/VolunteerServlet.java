@@ -67,8 +67,9 @@ public class VolunteerServlet extends HttpServlet {
 
     private void deleteVolunteer(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int id = Integer.parseInt(request.getParameter("id"));
-        volunteersDAO.delete(id);
-        List<Volunteers> volunteers = volunteersDAO.getAll();
+        Volunteers volunteer = volunteersDAO.findById(id);
+        volunteersDAO.delete(volunteer);
+        List<Volunteers> volunteers = volunteersDAO.findAll();
         request.setAttribute("volunteer", volunteers);
         request.setAttribute("message", "Volunteer is deleted!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/volunteer/list.jsp");
@@ -153,7 +154,7 @@ public class VolunteerServlet extends HttpServlet {
 
     private void listVolunteers(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        List<Volunteers> volunteer = volunteersDAO.getAll();
+        List<Volunteers> volunteer = volunteersDAO.findAll();
         request.setAttribute("volunteer", volunteer);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/volunteer/list.jsp");
         dispatcher.forward(request, response);
@@ -192,8 +193,8 @@ public class VolunteerServlet extends HttpServlet {
 
 
         Volunteers volunteer = new Volunteers(firstName, lastName, dateOfBirth, address, mobile, email, image, personalCode, gender, registrationProgram, reasonForRegistration,status);
-        volunteersDAO.save(volunteer);
-        List<Volunteers> volunteers = volunteersDAO.getAll();
+        volunteersDAO.add(volunteer);
+        List<Volunteers> volunteers = volunteersDAO.findAll();
         request.setAttribute("volunteer", volunteers);
         request.setAttribute("message", "A new Volunteer is Added");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/volunteer/list.jsp");
@@ -218,7 +219,7 @@ public class VolunteerServlet extends HttpServlet {
         Volunteers volunteer = new Volunteers(id, firstName, lastName, dateOfBirth, address, mobile, email, image, personalCode, gender, registrationProgram, reasonForRegistration);
         volunteersDAO.update(volunteer);
 
-        List<Volunteers> volunteers = volunteersDAO.getAll();
+        List<Volunteers> volunteers = volunteersDAO.findAll();
         request.setAttribute("message", "Volunteer is Updated");
         request.setAttribute("volunteer", volunteers);
 //        request.setAttribute("type", type);

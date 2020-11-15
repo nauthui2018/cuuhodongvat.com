@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityDAO implements IActivityDAO {
+public class ActivityDAO extends HelperDAO implements IActivityDAO {
     HelperDAO helper = new HelperDAO();
 
     public ActivityDAO() {
@@ -89,7 +89,7 @@ public class ActivityDAO implements IActivityDAO {
     }
 
     @Override
-    public Activity selectById(int activityID) {
+    public Activity findById(int activityID) {
         Activity activity = null;
         String query = "{CALL get_activity_by_id(?)}";
         try (Connection connection = helper.getConnection();

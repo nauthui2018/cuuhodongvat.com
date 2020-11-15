@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -93,7 +92,7 @@ public class EmployeeServlet extends HttpServlet {
     private void view(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("id"));
-        Employee employee=employeeService.findOne(id);
+        Employee employee=employeeService.findById(id);
         request.setAttribute("employee",employee);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/employee/view.jsp");
         dispatcher.forward(request, response);
@@ -103,7 +102,7 @@ public class EmployeeServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("id"));
 
-        Employee employee=employeeService.findOne(id);
+        Employee employee=employeeService.findById(id);
 
         request.setAttribute("employee",employee);
         request.setAttribute("genderList",new Employee().getGenderList());
@@ -135,7 +134,7 @@ public class EmployeeServlet extends HttpServlet {
         String employeeCMND=request.getParameter("employeeCMND");
 
         String idProvince=request.getParameter("employeeProvince");
-        Province employeeProvince=provinceDao.findOne(Integer.parseInt(idProvince));
+        Province employeeProvince=provinceDao.findById(Integer.parseInt(idProvince));
 
         String employeeImage=request.getParameter("employeeImage");
         String employeeGender=request.getParameter("employeeGender");
@@ -168,7 +167,7 @@ public class EmployeeServlet extends HttpServlet {
     private void showFormDelete(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("id"));
-        Employee employee=employeeService.findOne(id);
+        Employee employee=employeeService.findById(id);
         request.setAttribute("employee",employee);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/employee/delete.jsp");
         request.setAttribute("cmt","Bạn có muốn xóa?");
@@ -178,7 +177,8 @@ public class EmployeeServlet extends HttpServlet {
     private void delete(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id=Integer.parseInt(request.getParameter("id"));
-        employeeService.delete(id);
+        Employee employee = employeeService.findById(id);
+        employeeService.delete(employee);
         response.sendRedirect("/employees");
 
     }
@@ -211,7 +211,7 @@ public class EmployeeServlet extends HttpServlet {
         String employeeCMND=request.getParameter("employeeCMND");
 
         String id=request.getParameter("employeeProvince");
-        Province employeeProvince=provinceDao.findOne(Integer.parseInt(id));
+        Province employeeProvince=provinceDao.findById(Integer.parseInt(id));
 
         String employeeImage=request.getParameter("employeeImage");
         String employeeGender=request.getParameter("employeeGender");
@@ -227,7 +227,7 @@ public class EmployeeServlet extends HttpServlet {
         if (validate.size()>0){
             request.setAttribute("validate",validate);
         }else {
-            employeeService.save(employee);
+            employeeService.add(employee);
             request.setAttribute("cmt","Employee đã được thêm vào danh sách!");
         }
 
