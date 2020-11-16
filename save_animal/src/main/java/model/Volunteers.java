@@ -7,7 +7,7 @@ public class Volunteers {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-    private int addressID;
+    private int addresID;
     private String mobile;
     private String email;
     private String image;
@@ -15,18 +15,17 @@ public class Volunteers {
     private int gender;
     private String registrationProgram;
     private String reasonForRegistration;
-    private String status;
-    private String[] statusList = {"Pending","Approved","Eliminated"};
+    private int status = 1;
 
     public Volunteers() {
 
     }
 
-    public Volunteers(String firstName, String lastName, Date dateOfBirth, int addressID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration) {
+    public Volunteers(String firstName, String lastName, Date dateOfBirth, int addresID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.addressID = addressID;
+        this.addresID = addresID;
         this.mobile = mobile;
         this.email = email;
         this.image = image;
@@ -36,12 +35,12 @@ public class Volunteers {
         this.reasonForRegistration = reasonForRegistration;
     }
 
-    public Volunteers(int id, String firstName, String lastName, Date dateOfBirth, int addressID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration) {
+    public Volunteers(int id, String firstName, String lastName, Date dateOfBirth, int addresID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.addressID = addressID;
+        this.addresID = addresID;
         this.mobile = mobile;
         this.email = email;
         this.image = image;
@@ -51,12 +50,12 @@ public class Volunteers {
         this.reasonForRegistration = reasonForRegistration;
     }
 
-    public Volunteers(int id, String firstName, String lastName, Date dateOfBirth, int addressID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration, String status) {
+    public Volunteers(int id, String firstName, String lastName, Date dateOfBirth, int addresID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration, int status) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.addressID = addressID;
+        this.addresID = addresID;
         this.mobile = mobile;
         this.email = email;
         this.image = image;
@@ -67,11 +66,11 @@ public class Volunteers {
         this.status = status;
     }
 
-    public Volunteers(String firstName, String lastName, Date dateOfBirth, int addressID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration, String status) {
+    public Volunteers(String firstName, String lastName, Date dateOfBirth, int addresID, String mobile, String email, String image, String personalCode, int gender, String registrationProgram, String reasonForRegistration, int status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.addressID = addressID;
+        this.addresID = addresID;
         this.mobile = mobile;
         this.email = email;
         this.image = image;
@@ -115,11 +114,11 @@ public class Volunteers {
     }
 
     public int getAddress() {
-        return addressID;
+        return addresID;
     }
 
     public void setAddress(int addresID) {
-        this.addressID = addresID;
+        this.addresID = addresID;
     }
 
     public String getMobile() {
@@ -178,29 +177,22 @@ public class Volunteers {
         this.reasonForRegistration = reasonForRegistration;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public int getAddressID() {
-        return addressID;
+    public int getAddresID() {
+        return addresID;
     }
 
-    public void setAddressID(int addressID) {
-        this.addressID = addressID;
+    public void setAddresID(int addresID) {
+        this.addresID = addresID;
     }
 
-    public String[] getStatusList() {
-        return statusList;
-    }
-
-    public void setStatusList(String[] statusList) {
-        this.statusList = statusList;
-    }
 
     public String viewGender(int gender) {
         switch (gender) {
@@ -214,4 +206,19 @@ public class Volunteers {
                 return "-- Please select --";
         }
     }
+
+    public String viewStatus(int status) {
+        switch (status) {
+            case 1:
+                return "Pending";
+            case 2:
+                return "Approved";
+            case 3:
+                return "Eliminated";
+            default:
+                return "-- Please select --";
+        }
+
+    }
 }
+

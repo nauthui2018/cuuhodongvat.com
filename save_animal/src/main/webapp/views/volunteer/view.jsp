@@ -274,7 +274,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="text-right" style="padding-right: 0">Status's Volunteer</td>
-                                                <td class="text-left">${volunteer.status}</td>
+                                                <td class="text-left">${volunteer.viewStatus(volunteer.status)}</td>
                                             </tr>
 
                                             </tbody>

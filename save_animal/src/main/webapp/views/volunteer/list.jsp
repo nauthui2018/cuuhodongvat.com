@@ -225,7 +225,6 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="au-breadcrumb-content">
                                 <div class="au-breadcrumb-content">
                                     <div class="au-breadcrumb-left mt-1">
                                         <a class="btn btn-primary btn-sm"
@@ -273,11 +272,11 @@
                                         <tr>
                                             <td><c:out value="${volunteer.id}"/></td>
                                             <td><c:out value="${volunteer.firstName} ${volunteer.lastName}"/></td>
-                                            <td><img class="img-120" src="<c:url value="${volunteer.image}"/>" alt="anh"></td>
-                                            <td><c:out
-                                                    value="${volunteer.viewGender(volunteer.gender)}"/></td>
-                                            <td><a href="${pageContext.request.contextPath}/volunteer?action=status&id=${volunteer.id}" onclick="changeAction(this)" data-toggle="modal" data-target="#myModal">${volunteer.status}</a></td>
-<%--                                            <td><c:out value="${volun.status}"/></td>--%>
+                                            <td><img class="img-120" src="<c:url value="${volunteer.image}"/>"
+                                                     alt="anh"></td>
+                                            <td><c:out value="${volunteer.viewGender(volunteer.gender)}"/></td>
+                                            <td><c:out value="${volunteer.viewStatus(volunteer.status)}"/></td>
+
                                             <td>
                                                 <a href="${pageContext.request.contextPath}/volunteer?action=view&id=${volunteer.id}"><i
                                                         class="zmdi zmdi-eye" style="color: blue" title="View"></i></a>
@@ -351,7 +350,8 @@
         ordering: false,
         lengthMenu: [[10, 15, 25, 50, -1], [10, 15, 25, 50, "All"]]
     });
-    function changeAction(e,q) {
+
+    function changeAction(e, q) {
         document.getElementById("myForm1").action = e.href;
     }
 </script>

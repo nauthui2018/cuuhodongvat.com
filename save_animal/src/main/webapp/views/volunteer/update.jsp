@@ -90,6 +90,7 @@
                     <li class="has-sub">
                         <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                     </li>
+
                 </ul>
             </nav>
         </div>
@@ -329,6 +330,33 @@
                                                        value="${volunteer.dateOfBirth}"
                                                        placeholder="dateOfBirth"
                                                        class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Status's Volunteer</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <select name="status" id="status" class="form-control"
+                                                        required>
+                                                    <c:if test="${volunteer.status == null}">
+                                                        <option value="0" selected>-- Please select --</option>
+                                                        <option value="1">Pending</option>
+                                                        <option value="2">Approved</option>
+                                                        <option value="3">Eliminated</option>
+                                                    </c:if>
+                                                    <c:if test="${volunteer.status != null}">
+                                                        <option value="${volunteer.status}"
+                                                                selected>${volunteer.viewStatus(volunteer.status)}</option>
+                                                        <c:forEach var="i" begin="0" end="3">
+                                                            <c:if test="${volunteer.status != i}">
+                                                                <option value="${i}">${volunteer.viewStatus(i)}</option>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </c:if>
+                                                </select>
+                                                <div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row form-group">

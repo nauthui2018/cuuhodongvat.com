@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: NguyenVanHuong
+  User: NguyenVanHuongR
   Date: 9/30/20
   Time: 11:17 AM
   To change this template use File | Settings | File Templates.
@@ -86,7 +86,7 @@
                         <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
                     </li>
                     <li class="active has-sub">
-                        <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
+                        <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>\
                     </li>
                     <li class="has-sub">
                         <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
