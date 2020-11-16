@@ -94,14 +94,32 @@
         <div class="menu-sidebar2__content js-scrollbar1">
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
+                    <li class="active has-sub">
+                        <a href="/employees"/><i class="fas fa-table"></i>Employees</a>
+                    </li>
                     <li class="has-sub">
-                        <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
+                        <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
                     </li>
                     <li class="active has-sub">
+                        <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
+                    </li>
+                    <li class="has-sub">
                         <a href="/articles"><i class="fas fa-table"></i>Articles</a>
                     </li>
                     <li class="has-sub">
                         <a href="/users?action=list"><i class="fas fa-table"></i>Users</a>
+                    </li>
+                    <li class="active has-sub">
+                        <a href="/volunteer"/><i class="fas fa-table"></i>Volunteers</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/animal"><i class="fas fa-table"></i>Animals</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
                     </li>
                 </ul>
             </nav>
