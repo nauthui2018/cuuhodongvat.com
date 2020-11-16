@@ -221,8 +221,8 @@
                             <div class="au-breadcrumb-content">
                                 <div class="au-breadcrumb-left mt-1">
                                     <a class="btn btn-primary btn-sm"
-                                       href="${pageContext.request.contextPath}/employees?action=add">
-                                        <i class="zmdi zmdi-plus mr-1"></i>New User</a>
+                                       href="${pageContext.request.contextPath}/employees?action=create">
+                                        <i class="zmdi zmdi-plus mr-1"></i>New Employee</a>
                                 </div>
                                 <c:if test='${requestScope["message"] != null}'>
                                     <div class="alert alert-dismissible m-b-0" style="color: green">

@@ -55,7 +55,7 @@
                         </a>
                     </div>
                     <div class="login-form">
-                        <form action="users?action=register" method="post">
+                        <form action="" method="post">
                             <div class="form-group">
                                 <label>Username</label>
                                 <input value="${requestScope["userUsername"]}" class="au-input au-input--full" type="text" name="userUsername" placeholder="Username" required>

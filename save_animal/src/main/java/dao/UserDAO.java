@@ -69,7 +69,7 @@ public class UserDAO extends HelperDAO implements BaseDAO<User> {
 
     @Override
     public void add(User user) {
-        String query = "{CALL add_new_user(?,?,?,?)}";
+        String query = "{CALL add_new_user(?,?,?,?,?)}";
         try (Connection connection = helper.getConnection();
              CallableStatement callableStatement = connection.prepareCall(query);) {
             callableStatement.setString(1, user.getUserUsername());
