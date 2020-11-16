@@ -11,15 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportDao extends HelperDAO implements BaseDAO<Report> {
-    private static final String SELECT_ALL_REPORT="SELECT * FROM savinganimal.reports;";
-    private static final String SELECT_REPORT_BY_ID ="SELECT * FROM savinganimal.reports where reportID=?;";
-    private static final String INSERT_NEW_REPORT ="INSERT INTO `savinganimal`.`reports`(`reportAddress`,`reportDescription`,`reportPersonName`,`reportEmail`,`reportPhone`,`reportStatus`)VALUES(?,?,?,?,?,?);";
-    private static final String UPDATE_REPORT ="UPDATE `savinganimal`.`reports` SET`reportAddress` = ?,`reportDescription` = ?,`reportPersonName` = ?,`reportEmail` = ?,`reportPhone` = ?,`reportStatus` = ? WHERE `reportID` = ?;";
-    private static final String DELETE_REPORT_BY_ID ="DELETE FROM `savinganimal`.`reports` WHERE reportID=?;";
-    private static final String SELECT_REPORT_BY_NAME ="SELECT * FROM savinganimal.reports where reportPersonName like concat('%',?,'%');";
+    private static final String SELECT_ALL_REPORT="SELECT * FROM save_animals.reports;";
+    private static final String SELECT_REPORT_BY_ID ="SELECT * FROM save_animals.reports where reportID=?;";
+    private static final String INSERT_NEW_REPORT ="INSERT INTO `save_animals`.`reports`(`reportAddress`,`reportDescription`,`reportPersonName`,`reportEmail`,`reportPhone`,`reportStatus`)VALUES(?,?,?,?,?,?);";
+    private static final String UPDATE_REPORT ="UPDATE `save_animals`.`reports` SET`reportAddress` = ?,`reportDescription` = ?,`reportPersonName` = ?,`reportEmail` = ?,`reportPhone` = ?,`reportStatus` = ? WHERE `reportID` = ?;";
+    private static final String DELETE_REPORT_BY_ID ="DELETE FROM `save_animals`.`reports` WHERE reportID=?;";
+    private static final String SELECT_REPORT_BY_NAME ="SELECT * FROM save_animals.reports where reportPersonName like concat('%',?,'%');";
 
-
-
+    @Override
     public List<Report> findAll() {
         List<Report> reportList = new ArrayList<>();
 

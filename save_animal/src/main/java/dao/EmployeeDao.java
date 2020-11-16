@@ -11,12 +11,12 @@ import java.util.List;
 public class EmployeeDao extends HelperDAO implements BaseDAO<Employee> {
     private ProvinceDao provinceDao=new ProvinceDao();
 
-    private static final String SELECT_ALL_EMPLOYEE ="SELECT * FROM savinganimal.employee;";
-    private static final String SELECT_EMPLOYEE_BY_ID ="SELECT * FROM savinganimal.employee where employeeID=? ;";
-    private static final String INSERT_NEW_EMPLOYEE="INSERT INTO `savinganimal`.`employee`(`employeeName`,`employeePosition`,`employeeGroup`,`employeeDescription`,`employeeDOB`,`employeeDegree`,`employeeEmail`,`employeePhone`,`employeeAddress`,`employeeCMND`,`employeeProvinceCode`,`employeeImage`,`employeeGender`,`employeeJoinDate`)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-    private static final String UPDATE_EMPLOYEE_BY_ID="UPDATE `savinganimal`.`employee` SET `employeeName` = ?,`employeePosition` = ?,`employeeGroup` = ?,`employeeDescription` = ?,`employeeDOB` = ?,`employeeDegree` = ?,`employeeEmail` = ?,`employeePhone` = ?,`employeeAddress` = ?,`employeeCMND` = ?,`employeeProvinceCode` = ?,`employeeImage` = ?,`employeeGender` = ?,`employeeJoinDate` = ? WHERE `employeeID` = ?;";
-    private static final String DELETE_EMPLOYEE_BY_ID="DELETE FROM `savinganimal`.`employee` WHERE employeeID=?;";
-    private static final String SELECT_ALL_EMPLOYEE_BY_NAME ="SELECT * FROM savinganimal.employee where employeeName like concat('%',?,'%') ;";
+    private static final String SELECT_ALL_EMPLOYEE ="SELECT * FROM save_animals.employee;";
+    private static final String SELECT_EMPLOYEE_BY_ID ="SELECT * FROM save_animals.employee where employeeID=? ;";
+    private static final String INSERT_NEW_EMPLOYEE="INSERT INTO `save_animals`.`employee`(`employeeName`,`employeePosition`,`employeeGroup`,`employeeDescription`,`employeeDOB`,`employeeDegree`,`employeeEmail`,`employeePhone`,`employeeAddress`,`employeeCMND`,`employeeProvinceCode`,`employeeImage`,`employeeGender`,`employeeJoinDate`)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+    private static final String UPDATE_EMPLOYEE_BY_ID="UPDATE `save_animals`.`employee` SET `employeeName` = ?,`employeePosition` = ?,`employeeGroup` = ?,`employeeDescription` = ?,`employeeDOB` = ?,`employeeDegree` = ?,`employeeEmail` = ?,`employeePhone` = ?,`employeeAddress` = ?,`employeeCMND` = ?,`employeeProvinceCode` = ?,`employeeImage` = ?,`employeeGender` = ?,`employeeJoinDate` = ? WHERE `employeeID` = ?;";
+    private static final String DELETE_EMPLOYEE_BY_ID="DELETE FROM `save_animals`.`employee` WHERE employeeID=?;";
+    private static final String SELECT_ALL_EMPLOYEE_BY_NAME ="SELECT * FROM save_animals.employee where employeeName like concat('%',?,'%') ;";
 
 
 

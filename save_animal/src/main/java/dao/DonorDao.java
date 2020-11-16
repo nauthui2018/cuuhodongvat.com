@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DonorDao extends HelperDAO implements BaseDAO<Donor> {
-    private static final String SELECT_ALL_DONOR="SELECT * FROM savinganimal.donor;";
-    private static final String SELECT_DONOR_BY_ID="SELECT * FROM savinganimal.donor where donorID=?;";
-    private static final String INSERT_NEW_DONOR="INSERT INTO `savinganimal`.`donor`(`donorName`,`donorSurrogate`,`donorAddress`,`donorEmail`,`donorPhone`,`donorMoney`,`donorTotalMoney`,`donorImage`)VALUES(?,?,?,?,?,?,?,?);";
-    private static final String UPDATE_DONOR="UPDATE `savinganimal`.`donor`SET `donorName` = ?,`donorSurrogate` = ?,`donorAddress` = ?,`donorEmail` = ?,`donorPhone` = ?,`donorMoney` = ?,`donorTotalMoney`=?,`donorImage` = ? WHERE `donorID` = ?;";
-    private static final String DELETE_DONOR_BY_ID="DELETE FROM `savinganimal`.`donor` WHERE donorID=?;";
-    private static final String SELECT_DONOR_BY_NAME="SELECT * FROM savinganimal.donor where donorName=?;";
-    private static final String SEARCH_DONOR_BY_NAME="SELECT * FROM savinganimal.donor where donorName like concat('%',?,'%');";
+    private static final String SELECT_ALL_DONOR="SELECT * FROM save_animals.donor;";
+    private static final String SELECT_DONOR_BY_ID="SELECT * FROM save_animals.donor where donorID=?;";
+    private static final String INSERT_NEW_DONOR="INSERT INTO `save_animals`.`donor`(`donorName`,`donorSurrogate`,`donorAddress`,`donorEmail`,`donorPhone`,`donorMoney`,`donorTotalMoney`,`donorImage`)VALUES(?,?,?,?,?,?,?,?);";
+    private static final String UPDATE_DONOR="UPDATE `save_animals`.`donor`SET `donorName` = ?,`donorSurrogate` = ?,`donorAddress` = ?,`donorEmail` = ?,`donorPhone` = ?,`donorMoney` = ?,`donorTotalMoney`=?,`donorImage` = ? WHERE `donorID` = ?;";
+    private static final String DELETE_DONOR_BY_ID="DELETE FROM `save_animals`.`donor` WHERE donorID=?;";
+    private static final String SELECT_DONOR_BY_NAME="SELECT * FROM save_animals.donor where donorName=?;";
+    private static final String SEARCH_DONOR_BY_NAME="SELECT * FROM save_animals.donor where donorName like concat('%',?,'%');";
 
 
     @Override

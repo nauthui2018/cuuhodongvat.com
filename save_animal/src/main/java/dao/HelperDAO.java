@@ -15,7 +15,7 @@ public class HelperDAO {
     Connection connection;
     private String jdbcURL = "jdbc:mysql://localhost:3306/save_animals?useEncoding=true&characterEncoding=UTF-8";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "long";
+    private String jdbcPassword = "samthui7";
     private static SecretKeySpec secretKey;
     private static byte[] key;
 

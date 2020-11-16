@@ -69,46 +69,31 @@
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li class="active has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/employees"/>
-                        <i class="fas fa-table"></i>Employees
-                        </a>
+                        <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
                     </li>
                     <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/reports">
-                            <i class="fas fa-table"></i>Reports
-                        </a>
+                        <a href="/animal"><i class="fas fa-table"></i>Animals</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/articles"><i class="fas fa-table"></i>Articles</a>
+                    </li>
                     <li class="has-sub">
                         <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
                     </li>
-                    <li class="active has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/activities"/>
-                        <i class="fas fa-table"></i>Activities
-                        </a>
+                    <li class="has-sub">
+                        <a href="/employees"><i class="fas fa-table"></i>Employees</a>
                     </li>
                     <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/articles">
-                            <i class="fas fa-table"></i>Articles
-                        </a>
+                        <a href="/reports"><i class="fas fa-table"></i>Reports</a>
                     </li>
                     <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/users">
-                            <i class="fas fa-table"></i>Users
-                        </a>
-                    </li>
-                    <li class="active has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/volunteer"/>
-                        <i class="fas fa-table"></i>Volunteers
-                        </a>
+                        <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
                     </li>
                     <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/animal">
-                            <i class="fas fa-table"></i>Animals
-                        </a>
+                        <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
                     </li>
                     <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/subcriber">
-                            <i class="fas fa-table"></i>Subcribers
-                        </a>
+                        <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                     </li>
                 </ul>
             </nav>
@@ -141,16 +126,10 @@
                             <div class="setting-menu js-right-sidebar d-none d-lg-block">
                                 <div class="account-dropdown__body">
                                     <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-account"></i>Account</a>
+                                        <a href="/users?action=logout"/><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
                                     </div>
                                     <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-settings"></i>Logout</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-settings"></i>Setting</a>
+                                        <a href="/users?action=update"/><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
                                     </div>
                                 </div>
                             </div>
@@ -169,19 +148,37 @@
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a class="js-arrow" href="${pageContext.request.contextPath}/activities">
-                                <i class="fas fa-table"></i>Activities
-                            </a>
+                            <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="${pageContext.request.contextPath}/articles">
-                                <i class="fas fa-table"></i>Articles
-                            </a>
+                            <a href="/animal"><i class="fas fa-table"></i>Animals</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="${pageContext.request.contextPath}/users">
-                                <i class="fas fa-table"></i>Users
-                            </a>
+                            <a href="/articles"><i class="fas fa-table"></i>Articles</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/employees"><i class="fas fa-table"></i>Employees</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/users?action=logout"/><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/users?action=update"/><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
                         </li>
                     </ul>
                 </nav>
@@ -234,13 +231,13 @@
                                         </div>
                                         <div class="row form-group">
                                             <div class="col col-md-2">
-                                                <label class=" form-control-label">Activity Member</label>
+                                                <label class=" form-control-label">Activity Target</label>
                                             </div>
                                             <div class="col-12 col-md-10">
-                                                <input type="text" name="activityMember" value="${activity.activityMember}" placeholder="Activity Member" class="form-control" required>
+                                                <input type="text" name="activityTarget" value="${activity.activityTarget}" placeholder="Activity Target" class="form-control" required>
                                                 <label class="ml-2 mt-2">
                                                     <c:forEach items="${validationResult}" var="item">
-                                                        <c:if test="${(item.key).equals('activityMember')}">
+                                                        <c:if test="${(item.key).equals('activityTarget')}">
                                                             <span class="message" style="color: red; font-size: smaller">${item.value}</span>
                                                         </c:if>
                                                     </c:forEach>
@@ -249,13 +246,13 @@
                                         </div>
                                         <div class="row form-group">
                                             <div class="col col-md-2">
-                                                <label class=" form-control-label">Activity Target</label>
+                                                <label class=" form-control-label">Activity Member</label>
                                             </div>
                                             <div class="col-12 col-md-10">
-                                                <input type="text" name="activityTarget" value="${activity.activityTarget}" placeholder="Activity Target" class="form-control" required>
+                                                <input type="text" name="activityMember" value="${activity.activityMember}" placeholder="Activity Member" class="form-control" required>
                                                 <label class="ml-2 mt-2">
                                                     <c:forEach items="${validationResult}" var="item">
-                                                        <c:if test="${(item.key).equals('activityTarget')}">
+                                                        <c:if test="${(item.key).equals('activityMember')}">
                                                             <span class="message" style="color: red; font-size: smaller">${item.value}</span>
                                                         </c:if>
                                                     </c:forEach>
