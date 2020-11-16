@@ -1,6 +1,10 @@
 package controller;
 
+import model.Activity;
+import model.Employee;
 import model.User;
+import service.ActivityService;
+import service.EmployeeService;
 import service.UserService;
 
 import javax.servlet.RequestDispatcher;
@@ -18,6 +22,8 @@ import java.util.List;
 @WebServlet(name = "UserServlet", urlPatterns = "/users")
 public class UserServlet extends HttpServlet {
     private UserService userService = new UserService();
+    private ActivityService activityService = new ActivityService();
+    private EmployeeService employeeService = new EmployeeService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -105,6 +111,8 @@ public class UserServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
                 request.setAttribute("message", "Welcome back");
+                List<Activity> listActivities = activityService.findAll();
+                request.setAttribute("listActivities", listActivities);
                 dispatcher = request.getRequestDispatcher("views/activity/listActivities.jsp");
             } else {
                 request.setAttribute("userUsername", userUsername);
@@ -127,9 +135,9 @@ public class UserServlet extends HttpServlet {
         if (user != null) {
             List<User> listUsers = userService.findAll();
             request.setAttribute("listUsers", listUsers);
-            dispatcher = request.getRequestDispatcher("views/user/listUser.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/listUsers.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -143,23 +151,30 @@ public class UserServlet extends HttpServlet {
     private void addUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         String userUsername = request.getParameter("userUsername");
-        String userPassword = request.getParameter("userPassword");
+        String employeeID = request.getParameter("employeeID");
+        String userPassword1 = request.getParameter("userPassword1");
+        String userPassword2 = request.getParameter("userPassword2");
         request.setAttribute("userUsername", userUsername);
-        request.setAttribute("userPassword", userPassword);
+        request.setAttribute("employeeID", employeeID);
         RequestDispatcher dispatcher;
         if (userService.checkUsername(userUsername)) {
             request.setAttribute("message", "This username is existed. Please try other username!");
             dispatcher = request.getRequestDispatcher("views/user/addUser.jsp");
+        } else if (!userPassword1.equals(userPassword2)) {
+            request.setAttribute("message", "Your password doesn't misaligned. Please try again!");
+            dispatcher = request.getRequestDispatcher("views/user/addUser.jsp");
         } else {
             User user = new User();
             HashMap<String, String> validationResult = new HashMap<>();
-            validationResult = user.validationUser(userUsername, userPassword);
+            validationResult = user.validationUser(userUsername, userPassword1);
             if (validationResult.size() == 0) {
                 user.setUserAdmin(true);
                 user.setUserActive(true);
                 userService.add(user);
-                HttpSession session = request.getSession();
-                session.setAttribute("user", user);
+                List<User> listUsers = userService.findAll();
+                request.setAttribute("listUsers", listUsers);
+                List<Employee> listEmployees = employeeService.findAll();
+                request.setAttribute("listEmployees", listEmployees);
                 dispatcher = request.getRequestDispatcher("views/user/listUsers.jsp");
             } else {
                 request.setAttribute("validationResult", validationResult);
@@ -205,6 +220,10 @@ public class UserServlet extends HttpServlet {
                         newUser.setUserActive(true);
                         userService.update(newUser);
                         session.setAttribute("user", newUser);
+                        List<User> listUsers = userService.findAll();
+                        request.setAttribute("listUsers", listUsers);
+                        List<Employee> listEmployees = employeeService.findAll();
+                        request.setAttribute("listEmployees", listEmployees);
                         dispatcher = request.getRequestDispatcher("views/user/listUsers.jsp");
                     } else {
                         request.setAttribute("validationResult", validationResult);
@@ -252,12 +271,14 @@ public class UserServlet extends HttpServlet {
                 List<User> listUsers = userService.findAll();
                 request.setAttribute("listUsers", listUsers);
                 request.setAttribute("message", "This is your account. Please login by another account to delete!");
-                dispatcher = request.getRequestDispatcher("views/user/listUser.jsp");
+                dispatcher = request.getRequestDispatcher("views/user/listUsers.jsp");
             } else {
                 userService.delete(userService.findById(userID));
                 List<User> listUsers = userService.findAll();
                 request.setAttribute("listUsers", listUsers);
-                dispatcher = request.getRequestDispatcher("views/user/listUser.jsp");
+                List<Employee> listEmployees = employeeService.findAll();
+                request.setAttribute("listEmployees", listEmployees);
+                dispatcher = request.getRequestDispatcher("views/user/listUsers.jsp");
             }
         } else {
             dispatcher = request.getRequestDispatcher("views/user/login.jsp");
