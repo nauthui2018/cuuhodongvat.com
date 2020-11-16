@@ -95,31 +95,31 @@
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li class="active has-sub">
-                        <a href="/employees"/><i class="fas fa-table"></i>Employees</a>
-                    </li>
-                    <li class="has-sub">
-                        <a href="/reports"><i class="fas fa-table"></i>Reports</a>
-                    </li>
-                    <li class="has-sub">
-                        <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
-                    </li>
-                    <li class="active has-sub">
                         <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
-                    </li>
-                    <li class="has-sub">
-                        <a href="/articles"><i class="fas fa-table"></i>Articles</a>
-                    </li>
-                    <li class="has-sub">
-                        <a href="/users?action=list"><i class="fas fa-table"></i>Users</a>
-                    </li>
-                    <li class="active has-sub">
-                        <a href="/volunteer"/><i class="fas fa-table"></i>Volunteers</a>
                     </li>
                     <li class="has-sub">
                         <a href="/animal"><i class="fas fa-table"></i>Animals</a>
                     </li>
                     <li class="has-sub">
+                        <a href="/articles"><i class="fas fa-table"></i>Articles</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/employees"><i class="fas fa-table"></i>Employees</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                    </li>
+                    <li class="has-sub">
                         <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                     </li>
                 </ul>
             </nav>
@@ -141,10 +141,9 @@
                         </div>
                         <div class="header-button2">
                             <div class="header-button-item js-item-menu">
-                                <form id="myForm" action="${pageContext.request.contextPath}/activities?action=selectByName" method="post">
-                                    <input style="width: 20vw; border-bottom: white solid 1px; background: none; font-size: medium;" type="text" name="searchName" placeholder="Search here..." value="${requestScope["searchName"]}">
-                                    <button type="submit" class="btn btn-outline-light" onclick="document.getElementById('myForm').submit();">
-                                        <i class="fas fa-search"></i></button>
+                                <form action="" method="post">
+                                    <input style="width: 20vw; border-bottom: white solid 1px; background: none; font-size: medium; " type="text" name="search" placeholder="Search here...">
+                                    <i class="button" style="font-size: medium"></i><i class="zmdi zmdi-search ml-2"></i>
                                 </form>
                             </div>
                             <div class="header-button-item mr-0 js-sidebar-btn">
@@ -153,13 +152,10 @@
                             <div class="setting-menu js-right-sidebar d-none d-lg-block">
                                 <div class="account-dropdown__body">
                                     <div class="account-dropdown__item">
-                                        <a onclick="window.location.href='/users?action=view'"><i class="zmdi zmdi-account mr-3"></i>Account</a>
+                                        <a href="/users?action=logout"/><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
                                     </div>
                                     <div class="account-dropdown__item">
-                                        <a onclick="window.location.href='/users?action=logout'"><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a onclick="window.location.href='/users?action=update'"><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
+                                        <a href="/users?action=update"/><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
                                     </div>
                                 </div>
                             </div>
@@ -181,13 +177,28 @@
                             <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
                         </li>
                         <li class="has-sub">
-                            <a href="/articles"/><i class="fas fa-table"></i>Articles</a>
+                            <a href="/animal"><i class="fas fa-table"></i>Animals</a>
                         </li>
                         <li class="has-sub">
-                            <a href="/users?action=list"/><i class="fas fa-table"></i>Users</a>
+                            <a href="/articles"><i class="fas fa-table"></i>Articles</a>
                         </li>
                         <li class="has-sub">
-                            <a href="/users?action=view"/><i class="zmdi zmdi-account mr-3"></i>Account</a>
+                            <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/employees"><i class="fas fa-table"></i>Employees</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                         </li>
                         <li class="has-sub">
                             <a href="/users?action=logout"/><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
@@ -209,7 +220,8 @@
                         <div class="col-sm-12">
                             <div class="au-breadcrumb-content">
                                 <div class="au-breadcrumb-left mt-1">
-                                    <a class="btn btn-primary btn-sm" href="/activities?action=add">
+                                    <a class="btn btn-primary btn-sm"
+                                       href="${pageContext.request.contextPath}/activities?action=add">
                                         <i class="zmdi zmdi-plus mr-1"></i>New Activity</a>
                                 </div>
                                 <c:if test='${requestScope["message"] != null}'>
@@ -241,8 +253,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Member</th>
                                         <th>Target</th>
+                                        <th>Member</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
@@ -251,8 +263,8 @@
                                         <tr>
                                             <td>${activity.activityID}</td>
                                             <td>${activity.activityName}</td>
-                                            <td>${activity.activityMember}</td>
                                             <td>${activity.activityTarget}</td>
+                                            <td>${activity.activityMember}</td>
                                             <td>
                                                 <a href="/activities?action=view&activityID=${activity.activityID}"><i class="zmdi zmdi-eye" style="color: blue" title="View"></i></a>
                                                 <a href="/activities?action=update&activityID=${activity.activityID}"><i class="zmdi zmdi-edit ml-2" style="color: green" title="Edit"></i></a>

@@ -94,32 +94,32 @@
         <div class="menu-sidebar2__content js-scrollbar1">
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
-                    <li class="active has-sub">
-                        <a href="/employees"/><i class="fas fa-table"></i>Employees</a>
-                    </li>
                     <li class="has-sub">
-                        <a href="/reports"><i class="fas fa-table"></i>Reports</a>
-                    </li>
-                    <li class="has-sub">
-                        <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
-                    </li>
-                    <li class="active has-sub">
                         <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
-                    </li>
-                    <li class="has-sub">
-                        <a href="/articles"><i class="fas fa-table"></i>Articles</a>
-                    </li>
-                    <li class="has-sub">
-                        <a href="/users?action=list"><i class="fas fa-table"></i>Users</a>
-                    </li>
-                    <li class="active has-sub">
-                        <a href="/volunteer"/><i class="fas fa-table"></i>Volunteers</a>
                     </li>
                     <li class="has-sub">
                         <a href="/animal"><i class="fas fa-table"></i>Animals</a>
                     </li>
                     <li class="has-sub">
+                        <a href="/articles"><i class="fas fa-table"></i>Articles</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/employees"><i class="fas fa-table"></i>Employees</a>
+                    </li>
+                    <li class="active has-sub">
+                        <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                    </li>
+                    <li class="has-sub">
                         <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                     </li>
                 </ul>
             </nav>
@@ -162,7 +162,6 @@
         </form>
     </div>
 
-
     <!-- PAGE CONTAINER-->
     <div class="page-container2">
         <!-- HEADER DESKTOP-->
@@ -177,10 +176,9 @@
                         </div>
                         <div class="header-button2">
                             <div class="header-button-item js-item-menu">
-                                <form id="myForm" action="${pageContext.request.contextPath}/reports?action=search" method="post">
-                                    <input style="width: 20vw; border-bottom: white solid 1px; background: none; font-size: medium;" type="text" name="searchName" placeholder="Search here..." value="${requestScope["searchName"]}">
-                                    <button type="submit" class="btn btn-outline-light" onclick="document.getElementById('myForm').submit();">
-                                        <i class="fas fa-search"></i></button>
+                                <form action="" method="post">
+                                    <input style="width: 20vw; border-bottom: white solid 1px; background: none; font-size: medium; " type="text" name="search" placeholder="Search here...">
+                                    <i class="button" style="font-size: medium"></i><i class="zmdi zmdi-search ml-2"></i>
                                 </form>
                             </div>
                             <div class="header-button-item mr-0 js-sidebar-btn">
@@ -189,16 +187,10 @@
                             <div class="setting-menu js-right-sidebar d-none d-lg-block">
                                 <div class="account-dropdown__body">
                                     <div class="account-dropdown__item">
-                                        <a onclick="window.location.href='/users?action=view'"><i class="zmdi zmdi-account mr-3"></i>Account</a>
+                                        <a href="/users?action=logout"/><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
                                     </div>
                                     <div class="account-dropdown__item">
-                                        <a onclick="window.location.href='/users?action=logout'"><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a onclick="window.location.href='/users?action=updatePassword'"><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a onclick="window.location.href='/users?action=updateInformation'"><i class="zmdi zmdi-settings mr-3"></i>Update Information</a>
+                                        <a href="/users?action=update"/><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
                                     </div>
                                 </div>
                             </div>
@@ -216,26 +208,38 @@
             <div class="menu-sidebar2__content js-scrollbar2">
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-                            <a href="/employees"/><i class="fas fa-table"></i>Employees</a>
+                        <li class="has-sub">
+                            <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
                         </li>
                         <li class="has-sub">
-                            <a href="/reports"/><i class="fas fa-table"></i>Reports</a>
+                            <a href="/animal"><i class="fas fa-table"></i>Animals</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/articles"><i class="fas fa-table"></i>Articles</a>
                         </li>
                         <li class="has-sub">
                             <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
                         </li>
                         <li class="has-sub">
-                            <a href="/users?action=view"/><i class="zmdi zmdi-account mr-3"></i>Account</a>
+                            <a href="/employees"><i class="fas fa-table"></i>Employees</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                         </li>
                         <li class="has-sub">
                             <a href="/users?action=logout"/><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
                         </li>
                         <li class="has-sub">
-                            <a href="/users?action=updatePassword"/><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
-                        </li>
-                        <li class="has-sub">
-                            <a href="/users?action=updateInformation"/><i class="zmdi zmdi-settings mr-3 mr-3"></i>Update Information</a>
+                            <a href="/users?action=update"/><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
                         </li>
                     </ul>
                 </nav>
@@ -251,7 +255,8 @@
                         <div class="col-sm-12">
                             <div class="au-breadcrumb-content">
                                 <div class="au-breadcrumb-left mt-1">
-                                    <a class="btn btn-primary btn-sm" href="/reports?action=create">
+                                    <a class="btn btn-primary btn-sm"
+                                       href="${pageContext.request.contextPath}/reports?action=add">
                                         <i class="zmdi zmdi-plus mr-1"></i>New Report</a>
                                 </div>
                                 <c:if test='${requestScope["message"] != null}'>
@@ -261,7 +266,7 @@
                                     </div>
                                 </c:if>
                                 <div class="au-breadcrumb-right m-b-10">
-                                    <a class="btn btn-primary btn-sm" href="#">Home page</a>
+                                    <a class="btn btn-primary btn-sm" href="/users?action=''">Home page</a>
                                 </div>
                             </div>
                         </div>
