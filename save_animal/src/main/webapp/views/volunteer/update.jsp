@@ -64,33 +64,6 @@
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li class="active has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/employees"/>
-                        <i class="fas fa-table"></i>Customers
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/reports">
-                            <i class="fas fa-table"></i>Reports
-                        </a>
-                    <li class="has-sub">
-                        <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
-                    </li>
-                    <li class="active has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/activities"/>
-                        <i class="fas fa-table"></i>Activities
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/articles">
-                            <i class="fas fa-table"></i>Articles
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/users">
-                            <i class="fas fa-table"></i>Users
-                        </a>
-                    </li>
-                    <li class="active has-sub">
                         <a class="js-arrow" href="${pageContext.request.contextPath}/volunteer"/>
                         <i class="fas fa-table"></i>Volunteers
                         </a>
@@ -105,6 +78,7 @@
                             <i class="fas fa-table"></i>Subcribers
                         </a>
                     </li>
+
                 </ul>
             </nav>
         </div>
@@ -373,6 +347,33 @@
                                                        value="${volunteer.dateOfBirth}"
                                                        placeholder="dateOfBirth"
                                                        class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Status's Volunteer</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <select name="status" id="status" class="form-control"
+                                                        required>
+                                                    <c:if test="${volunteer.status == null}">
+                                                        <option value="0" selected>-- Please select --</option>
+                                                        <option value="1">Pending</option>
+                                                        <option value="2">Approved</option>
+                                                        <option value="3">Eliminated</option>
+                                                    </c:if>
+                                                    <c:if test="${volunteer.status != null}">
+                                                        <option value="${volunteer.status}"
+                                                                selected>${volunteer.viewStatus(volunteer.status)}</option>
+                                                        <c:forEach var="i" begin="0" end="3">
+                                                            <c:if test="${volunteer.status != i}">
+                                                                <option value="${i}">${volunteer.viewStatus(i)}</option>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </c:if>
+                                                </select>
+                                                <div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row form-group">

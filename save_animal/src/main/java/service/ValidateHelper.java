@@ -144,7 +144,7 @@ public class ValidateHelper {
         String trimmedStr = trimmedString(str);
         try {
             int number = Integer.parseInt(trimmedStr);
-            if (number >= 0 && number <=2) {
+            if (number >= 0 && number <= 2) {
                 isValid = true;
             }
         } catch (NumberFormatException ex) {
@@ -157,21 +157,21 @@ public class ValidateHelper {
 // -------------------------------------  Long   -------------------------------------------
 // -----------------------------------------------------------------------------------------
 
-public boolean validateName(String name) {
-    boolean isValid = true;
-    int minLength = 2;
-    int maxLengthName = 50;
-    String trimmedName = trimmedString(name);
-    int lengthName = trimmedName.length();
-    Pattern pattern = Pattern.compile("^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s\\W|_]+$");
-    Matcher matcherFirstName = pattern.matcher(trimmedName);
-    if (!matcherFirstName.matches()
-            || lengthName < minLength
-            || lengthName > maxLengthName) {
-        isValid = false;
+    public boolean validateName(String name) {
+        boolean isValid = true;
+        int minLength = 2;
+        int maxLengthName = 50;
+        String trimmedName = trimmedString(name);
+        int lengthName = trimmedName.length();
+        Pattern pattern = Pattern.compile("^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s\\W|_]+$");
+        Matcher matcherFirstName = pattern.matcher(trimmedName);
+        if (!matcherFirstName.matches()
+                || lengthName < minLength
+                || lengthName > maxLengthName) {
+            isValid = false;
+        }
+        return isValid;
     }
-    return isValid;
-}
 
 
     public boolean validateAddress(String address) {
@@ -207,9 +207,9 @@ public boolean validateName(String name) {
         String regex = "(09|01[2|6|8|9])+([0-9]{8})\\b";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(trimmedMobile);
-        int minlength=10;
+        int minlength = 10;
         int maxLength = 11;
-        if (!matcher.matches() || length > maxLength || length< minlength) {
+        if (!matcher.matches() || length > maxLength || length < minlength) {
             isValid = false;
         }
         return isValid;
@@ -218,28 +218,28 @@ public boolean validateName(String name) {
     public boolean validateImageDescription(String imageOrDescription) {
         String trimmedDate = trimmedString(imageOrDescription);
         boolean isValid = true;
-        int length=trimmedDate.length();
-        int maxLength=500;
-        if (length > maxLength || length<0 ) {
+        int length = trimmedDate.length();
+        int maxLength = 500;
+        if (length > maxLength || length < 0) {
             return false;
         }
         return isValid;
     }
 
-    private Employee employee=new Employee();
+    private Employee employee = new Employee();
 
     public boolean validateGenderLong(String gender) {
         boolean isValid = false;
         String trimmedGender = trimmedString(gender);
         int length = trimmedGender.length();
         int maxLengthGender = 10;
-        for (String item:employee.getGenderList()) {
-            if (item.equals(trimmedGender)){
-                isValid=true;
+        for (String item : employee.getGenderList()) {
+            if (item.equals(trimmedGender)) {
+                isValid = true;
                 break;
             }
         }
-        if(length>maxLengthGender || !isValid){
+        if (length > maxLengthGender || !isValid) {
             return false;
         }
         return true;
@@ -250,13 +250,13 @@ public boolean validateName(String name) {
         String trimmedDegree = trimmedString(degree);
         int length = trimmedDegree.length();
         int maxLengthDegree = 30;
-        for (String item:employee.getDegreeList()) {
-            if (item.equals(trimmedDegree)){
-                isValid=true;
+        for (String item : employee.getDegreeList()) {
+            if (item.equals(trimmedDegree)) {
+                isValid = true;
                 break;
             }
         }
-        if(length>maxLengthDegree || !isValid){
+        if (length > maxLengthDegree || !isValid) {
             return false;
         }
 
@@ -268,13 +268,13 @@ public boolean validateName(String name) {
         String trimmedPosition = trimmedString(position);
         int length = trimmedPosition.length();
         int maxLengthDegree = 30;
-        for (String item:employee.getPositionList()) {
-            if (item.equals(trimmedPosition)){
-                isValid=true;
+        for (String item : employee.getPositionList()) {
+            if (item.equals(trimmedPosition)) {
+                isValid = true;
                 break;
             }
         }
-        if(length>maxLengthDegree || !isValid){
+        if (length > maxLengthDegree || !isValid) {
             return false;
         }
         return true;
@@ -304,8 +304,8 @@ public boolean validateName(String name) {
 
 
     //   Validate Employee
-    public HashMap<String, String> validationEmployee(String name, String gender, String dob, String phone,String address,String email,
-                                                      String idProvince,String description,String image, String joinDate,String degree,String position) {
+    public HashMap<String, String> validationEmployee(String name, String gender, String dob, String phone, String address, String email,
+                                                      String idProvince, String description, String image, String joinDate, String degree, String position) {
         HashMap<String, String> validationResult = new HashMap<>();
         if (!validateName(name)) {
             validationResult.put("Name", "'" + name + "' - Invalid name");
@@ -345,8 +345,9 @@ public boolean validateName(String name) {
         }
         return validationResult;
     }
+
     // validate donor
-    public HashMap<String, String> validationDonor(String name,String surrogate, String address, String email, String phone,String image,String money) {
+    public HashMap<String, String> validationDonor(String name, String surrogate, String address, String email, String phone, String image, String money) {
         HashMap<String, String> validationResult = new HashMap<>();
         if (!validateName(name)) {
             validationResult.put("Name", "'" + name + "' - Invalid name");
@@ -368,6 +369,59 @@ public boolean validateName(String name) {
         }
         if (!validateDoubleNumber(money)) {
             validationResult.put("Money", "'" + money + "' - Invalid number");
+        }
+        return validationResult;
+    }
+
+    //    Validate Subcriber
+    public HashMap<String, String> validationSubcriber(String firstName, String lastName, String phone, String email) {
+        HashMap<String, String> validationResult = new HashMap<>();
+        if (!validateFirstName(firstName)) {
+            validationResult.put("First Name", "'" + firstName + "' - Invalid First Name");
+        }
+        if (!validateLastName(lastName)) {
+            validationResult.put("Last Name", "'" + lastName + "' - Invalid Last Name");
+        }
+        if (!validateEmail(email)) {
+            validationResult.put("Email", "'" + email + "' - Invalid email");
+        }
+        if (!validateMobile(phone)) {
+            validationResult.put("Phone", "'" + phone + "' - Invalid phone number");
+        }
+        return validationResult;
+    }
+
+
+    //   Validate Volunteer
+    public HashMap<String, String> validationVolunteer(String firstName, String lastName, String dob, String phone, String email) {
+        HashMap<String, String> validationResult = new HashMap<>();
+        if (!validateFirstName(firstName)) {
+            validationResult.put("First Name", "'" + firstName + "' - Invalid First Name");
+        }
+        if (!validateDate(dob)) {
+            validationResult.put("DOB", "'" + dob + "' - Invalid date");
+        }
+        if (!validateMobile(phone)) {
+            validationResult.put("Phone", "'" + phone + "' - Invalid phone number");
+        }
+        if (!validateLastName(lastName)) {
+            validationResult.put("Last Name", "'" + lastName + "' - Invalid Last Name");
+        }
+        if (!validateEmail(email)) {
+            validationResult.put("Email", "'" + email + "' - Invalid Email");
+        }
+        return validationResult;
+    }
+
+    // validationAnimal
+    public HashMap<String, String> validationAnimal(String name, String description) {
+        HashMap<String, String> validationResult = new HashMap<>();
+        if (!validateFirstName(name)) {
+            validationResult.put("Name", "'" + name + "' - Invalid name");
+        }
+        if (!validateLongText(description)) {
+            validationResult.put("description", "'" + description + "' - Invalid description");
+
         }
         return validationResult;
     }

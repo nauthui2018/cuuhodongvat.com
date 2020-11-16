@@ -95,30 +95,12 @@
     <aside class="menu-sidebar2">
         <div class="logo">
             <a href="#">
-                <img src="../images/icon/logo-white.png" alt="Cool Admin"/>
+                <img src="/images/icon/logo-white.png" alt="Cool Admin"/>
             </a>
         </div>
         <div class="menu-sidebar2__content js-scrollbar1">
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
-                    <li class="active has-sub">
-                        <a href="/employees"/><i class="fas fa-table"></i>Employees</a>
-                    </li>
-                    <li class="has-sub">
-                        <a href="/reports"><i class="fas fa-table"></i>Reports</a>
-                    </li>
-                    <li class="has-sub">
-                        <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
-                    </li>
-                    <li class="active has-sub">
-                        <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
-                    </li>
-                    <li class="has-sub">
-                        <a href="/articles"><i class="fas fa-table"></i>Articles</a>
-                    </li>
-                    <li class="has-sub">
-                        <a href="/users?action=list"><i class="fas fa-table"></i>Users</a>
-                    </li>
                     <li class="active has-sub">
                         <a href="/volunteer"/><i class="fas fa-table"></i>Volunteers</a>
                     </li>
@@ -133,40 +115,6 @@
         </div>
     </aside>
     <!-- END MENU SIDEBAR-->
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <form id="myForm1" action="${pageContext.request.contextPath}/volunteer?action=status&id=${volunteer.id}" method="post">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Status's Volunteer</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <h5 id="status"></h5> Do you want to exchange Status'Volunteer?
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <select name="reportStatus" id="reportStatus" >
-                            <c:forEach items="${statusList}" var="status">
-                                <c:if test="${status==volunteer.status}">
-                                    <option value="${volunteer.status}" selected>${status}</option>
-                                </c:if>
-                                <c:if test="${status!=volunteer.status}">
-                                    <option value="${status}">${status}</option>
-                                </c:if>
-                            </c:forEach>
-                        </select>
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
 
     <!-- PAGE CONTAINER-->
     <div class="page-container2">
@@ -254,8 +202,8 @@
                             <div class="au-breadcrumb-content">
                                 <div class="au-breadcrumb-left mt-1">
                                     <a class="btn btn-primary btn-sm"
-                                       href="${pageContext.request.contextPath}/volunteer?action=add">
-                                        <i class="zmdi zmdi-plus mr-1"></i>New Volunteer</a>
+                                       href="${pageContext.request.contextPath}/animal?action=add">
+                                        <i class="zmdi zmdi-plus mr-1"></i>New Animal</a>
                                 </div>
                                 <c:if test='${requestScope["message"] != null}'>
                                     <div class="alert alert-dismissible m-b-0" style="color: green">
@@ -265,7 +213,8 @@
                                     </div>
                                 </c:if>
                                 <div class="au-breadcrumb-right m-b-10">
-                                    <a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/volunteer?action=''">Home page</a>
+                                    <a class="btn btn-primary btn-sm"
+                                       href="${pageContext.request.contextPath}/animal?action=''">Home page</a>
                                 </div>
                             </div>
                         </div>
@@ -298,11 +247,11 @@
                                         <tr>
                                             <td><c:out value="${volunteer.id}"/></td>
                                             <td><c:out value="${volunteer.firstName} ${volunteer.lastName}"/></td>
-                                            <td><img class="img-120" src="<c:url value="${volunteer.image}"/>" alt="anh"></td>
-                                            <td><c:out
-                                                    value="${volunteer.viewGender(volunteer.gender)}"/></td>
-                                            <td><a href="${pageContext.request.contextPath}/volunteer?action=status&id=${volunteer.id}" onclick="changeAction(this)" data-toggle="modal" data-target="#myModal">${volunteer.status}</a></td>
-<%--                                            <td><c:out value="${volun.status}"/></td>--%>
+                                            <td><img class="img-120" src="<c:url value="${volunteer.image}"/>"
+                                                     alt="anh"></td>
+                                            <td><c:out value="${volunteer.viewGender(volunteer.gender)}"/></td>
+                                            <td><c:out value="${volunteer.viewStatus(volunteer.status)}"/></td>
+
                                             <td>
                                                 <a href="${pageContext.request.contextPath}/volunteer?action=view&id=${volunteer.id}"><i
                                                         class="zmdi zmdi-eye" style="color: blue" title="View"></i></a>
@@ -376,7 +325,8 @@
         ordering: false,
         lengthMenu: [[10, 15, 25, 50, -1], [10, 15, 25, 50, "All"]]
     });
-    function changeAction(e,q) {
+
+    function changeAction(e, q) {
         document.getElementById("myForm1").action = e.href;
     }
 </script>

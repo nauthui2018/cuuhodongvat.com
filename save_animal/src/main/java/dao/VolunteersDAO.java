@@ -1,4 +1,6 @@
 package dao;
+
+import model.Animals;
 import model.Volunteers;
 
 import java.sql.Connection;
@@ -43,7 +45,7 @@ public class VolunteersDAO extends HelperDAO implements BaseDAO<Volunteers> {
                 int gender = rs.getInt("volunteerGender");
                 String registrationProgram = rs.getString("volunteerRegistrationProgram");
                 String reasonForRegistration = rs.getString("volunteerReasonForRegistration");
-                String status = rs.getString("volunteerStatus");
+                int status = rs.getInt("volunteerStatus");
                 volunteers.add(new Volunteers(id, firstName, lastName, dob, addres, mobile, email, image, personalCode, gender, registrationProgram, reasonForRegistration, status));
             }
         } catch (SQLException e) {
@@ -53,26 +55,26 @@ public class VolunteersDAO extends HelperDAO implements BaseDAO<Volunteers> {
     }
 
     @Override
-    public  void add(Volunteers volunteers) throws Exception {
-            try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_VOLUNTEER_SQL)) {
-                preparedStatement.setString(1, volunteers.getFirstName());
-                preparedStatement.setString(2, volunteers.getLastName());
-                preparedStatement.setDate(3, (java.sql.Date) volunteers.getDateOfBirth());
-                preparedStatement.setInt(4, volunteers.getAddress());
-                preparedStatement.setString(5, volunteers.getMobile());
-                preparedStatement.setString(6, volunteers.getEmail());
-                preparedStatement.setString(7, volunteers.getImage());
-                preparedStatement.setString(8, volunteers.getPersonalCode());
-                preparedStatement.setInt(9, volunteers.getGender());
-                preparedStatement.setString(10, volunteers.getRegistrationProgram());
-                preparedStatement.setString(11, volunteers.getReasonForRegistration());
-                preparedStatement.setString(12, volunteers.getStatus());
+    public void add(Volunteers volunteers) throws Exception {
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_VOLUNTEER_SQL)) {
+            preparedStatement.setString(1, volunteers.getFirstName());
+            preparedStatement.setString(2, volunteers.getLastName());
+            preparedStatement.setDate(3, (java.sql.Date) volunteers.getDateOfBirth());
+            preparedStatement.setInt(4, volunteers.getAddress());
+            preparedStatement.setString(5, volunteers.getMobile());
+            preparedStatement.setString(6, volunteers.getEmail());
+            preparedStatement.setString(7, volunteers.getImage());
+            preparedStatement.setString(8, volunteers.getPersonalCode());
+            preparedStatement.setInt(9, volunteers.getGender());
+            preparedStatement.setString(10, volunteers.getRegistrationProgram());
+            preparedStatement.setString(11, volunteers.getReasonForRegistration());
+            preparedStatement.setInt(12, volunteers.getStatus());
 
-                System.out.println(preparedStatement);
-                preparedStatement.executeUpdate();
-            } catch (SQLException e) {
-                printSQLException(e);
-            }
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
     }
 
 
@@ -91,7 +93,7 @@ public class VolunteersDAO extends HelperDAO implements BaseDAO<Volunteers> {
             statement.setInt(9, volunteers.getGender());
             statement.setString(10, volunteers.getRegistrationProgram());
             statement.setString(11, volunteers.getReasonForRegistration());
-            statement.setString(12, volunteers.getStatus());
+            statement.setInt(12, volunteers.getStatus());
             statement.setInt(13, volunteers.getId());
             rowUpdated = statement.executeUpdate() > 0;
         }
@@ -130,7 +132,7 @@ public class VolunteersDAO extends HelperDAO implements BaseDAO<Volunteers> {
                 int gender = rs.getInt("volunteerGender");
                 String registrationProgram = rs.getString("volunteerRegistrationProgram");
                 String reasonForRegistration = rs.getString("volunteerReasonForRegistration");
-                String status = rs.getString("volunteerStatus");
+                int status = rs.getInt("volunteerStatus");
                 volunteer = new Volunteers(id, firstName, lastName, dob, addres, mobile, email, image, personalCode, gender, registrationProgram, reasonForRegistration, status);
             }
         } catch (SQLException e) {
@@ -138,6 +140,7 @@ public class VolunteersDAO extends HelperDAO implements BaseDAO<Volunteers> {
         }
         return volunteer;
     }
+
     public List<Volunteers> searchWithName(String nameOfVolunteer) {
         List<Volunteers> volunteers = new ArrayList<>();
         try (Connection connection = getConnection();
@@ -157,8 +160,8 @@ public class VolunteersDAO extends HelperDAO implements BaseDAO<Volunteers> {
                 int gender = rs.getInt("volunteerGender");
                 String registrationProgram = rs.getString("volunteerRegistrationProgram");
                 String reasonForRegistration = rs.getString("volunteerReasonForRegistration");
-                String status = rs.getString("volunteerStatus");
-               Volunteers volunteer = new Volunteers(id, firstName, lastName, dob, addres, mobile, email, image, personalCode, gender, registrationProgram, reasonForRegistration, status);
+                int status = rs.getInt("volunteerStatus");
+                Volunteers volunteer = new Volunteers(id, firstName, lastName, dob, addres, mobile, email, image, personalCode, gender, registrationProgram, reasonForRegistration, status);
 
                 volunteers.add(volunteer);
             }

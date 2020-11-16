@@ -2,6 +2,7 @@ package controller;
 
 import dao.AnimalsDAO;
 import model.Animals;
+import service.ValidateHelper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,12 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 @WebServlet(name = "AnimalServlet", urlPatterns = "/animal")
 public class AnimalServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private AnimalsDAO animalsDAO;
+    private ValidateHelper validateHelper=new ValidateHelper();
 
     public void init() {
 
@@ -186,14 +189,19 @@ public class AnimalServlet extends HttpServlet {
         int protectionLevel = Integer.parseInt(request.getParameter("protectionLevel"));
         int staffID = Integer.parseInt(request.getParameter("staffID"));
         Animals animal = new Animals(name, image, description, protectionLevel, staffID);
-        animalsDAO.add(animal);
+
+        HashMap<String,String> validate = validateHelper.validationAnimal(name,description);
+        if (validate.size()>0) {
+            request.setAttribute("validate",validate);
+        }else {
+            animalsDAO.add(animal);
+            request.setAttribute("message", "A new Animal is added!");
+        }
 //        List<Type> typeList = typeDAO.getAll();
 //        request.setAttribute("typeList", typeList);
         List<Animals> animals = animalsDAO.findAll();
         request.setAttribute("animal", animals);
-        request.setAttribute("message", "A new Animal is added!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/animal/list.jsp");
-
         dispatcher.forward(request, response);
     }
 
@@ -205,14 +213,17 @@ public class AnimalServlet extends HttpServlet {
         String description = request.getParameter("description");
         int protectionLevel = Integer.parseInt(request.getParameter("protectionLevel"));
         int staffID = Integer.parseInt(request.getParameter("staffID"));
-
-
         Animals animal = new Animals(id, name, image, description, protectionLevel, staffID);
-        animalsDAO.update(animal);
+        HashMap<String,String> validate = validateHelper.validationAnimal(name,description);
+        if (validate.size()>0) {
+            request.setAttribute("validate",validate);
+        }else {
+            animalsDAO.update(animal);
+            request.setAttribute("message", "Animal is updated!");
+        }
 //        request.setAttribute("animal", animal);
         List<Animals> animals = animalsDAO.findAll();
         request.setAttribute("animal", animals);
-        request.setAttribute("message", "Animal is updated!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/animal/list.jsp");
         dispatcher.forward(request, response);
     }

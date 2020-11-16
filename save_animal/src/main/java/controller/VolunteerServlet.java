@@ -1,7 +1,9 @@
 package controller;
 
 import dao.VolunteersDAO;
+import model.Animals;
 import model.Volunteers;
+import service.ValidateHelper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,11 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 @WebServlet(name = "VolunteerServlet", urlPatterns = "/volunteer")
 public class VolunteerServlet extends HttpServlet {
     private VolunteersDAO volunteersDAO;
+    private ValidateHelper validateHelper=new ValidateHelper();
 
     public void init() {
         volunteersDAO = new VolunteersDAO();
@@ -40,9 +44,9 @@ public class VolunteerServlet extends HttpServlet {
                 case "search":
                     searchWithNameOfVolunteer(request, response);
                     break;
-                case "status":
-                    exchangeStatus(request,response);
-                    break;
+//                case "status":
+//                    exchangeStatus(request,response);
+//                    break;
                 case "delete":
                     deleteVolunteer(request, response);
                     break;
@@ -54,16 +58,20 @@ public class VolunteerServlet extends HttpServlet {
         }
     }
 
-    private void exchangeStatus(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        int id=Integer.parseInt(request.getParameter("id"));
+//    private void exchangeStatus(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        int id=Integer.parseInt(request.getParameter("id"));
+//
+//        int status= Integer.parseInt(request.getParameter("status"));
+//        Volunteers volunteers=volunteersDAO.findById(id);
+//        volunteers.setStatus(status);
+////        reportService.update(report);
+//        response.sendRedirect("/volunteer");
+//    }
 
-        String status=request.getParameter("volunteerStatus");
 
-        Volunteers volunteers=volunteersDAO.findById(id);
-        volunteers.setStatus(status);
-//        reportService.update(report);
-        response.sendRedirect("/volunteer");
-    }
+
+
+
 
     private void deleteVolunteer(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -109,6 +117,8 @@ public class VolunteerServlet extends HttpServlet {
                     break;
                 case "view":
                     showViewVolunteer(request, response);
+                    break;
+                case "list":
                     break;
                 default:
                     listVolunteers(request, response);
@@ -181,6 +191,7 @@ public class VolunteerServlet extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         Date dateOfBirth = Date.valueOf(request.getParameter("dateOfBirth"));
+        String dateOfBirthString = request.getParameter("dateOfBirth");
         int address = Integer.parseInt(request.getParameter("addres"));
         String mobile = request.getParameter("mobile");
         String email = request.getParameter("email");
@@ -189,14 +200,17 @@ public class VolunteerServlet extends HttpServlet {
         int gender = Integer.parseInt(request.getParameter("gender"));
         String registrationProgram = request.getParameter("registrationProgram");
         String reasonForRegistration = request.getParameter("reasonForRegistration");
-        String status = "Pending";
-
-
+        int status = 1;
         Volunteers volunteer = new Volunteers(firstName, lastName, dateOfBirth, address, mobile, email, image, personalCode, gender, registrationProgram, reasonForRegistration,status);
-        volunteersDAO.add(volunteer);
+        HashMap<String, String> validate = validateHelper.validationVolunteer(firstName, lastName, dateOfBirthString, mobile, email);
+        if (validate.size() > 0) {
+            request.setAttribute("validate", validate);
+        } else {
+            volunteersDAO.add(volunteer);
+            request.setAttribute("message", "A new Volunteer is Added");
+        }
         List<Volunteers> volunteers = volunteersDAO.findAll();
         request.setAttribute("volunteer", volunteers);
-        request.setAttribute("message", "A new Volunteer is Added");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/volunteer/list.jsp");
         dispatcher.forward(request, response);
     }
@@ -208,19 +222,25 @@ public class VolunteerServlet extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         Date dateOfBirth = Date.valueOf(request.getParameter("dateOfBirth"));
+        String dateOfBirthString = request.getParameter("dateOfBirth");
         int address = Integer.parseInt(request.getParameter("address"));
         String mobile = request.getParameter("mobile");
         String email = request.getParameter("email");
         String image = request.getParameter("image");
         String personalCode = request.getParameter("personalCode");
         int gender = Integer.parseInt(request.getParameter("gender"));
+        int status = Integer.parseInt(request.getParameter("status"));
         String registrationProgram = request.getParameter("registrationProgram");
         String reasonForRegistration = request.getParameter("reasonForRegistration");
-        Volunteers volunteer = new Volunteers(id, firstName, lastName, dateOfBirth, address, mobile, email, image, personalCode, gender, registrationProgram, reasonForRegistration);
-        volunteersDAO.update(volunteer);
-
+        Volunteers volunteer = new Volunteers(id, firstName, lastName, dateOfBirth, address, mobile, email, image, personalCode, gender, registrationProgram, reasonForRegistration,status);
+        HashMap<String, String> validate = validateHelper.validationVolunteer(firstName, lastName, dateOfBirthString, mobile, email);
+        if (validate.size() > 0) {
+            request.setAttribute("validate", validate);
+        } else {
+            volunteersDAO.update(volunteer);
+            request.setAttribute("message", "Volunteer is Updated");
+        }
         List<Volunteers> volunteers = volunteersDAO.findAll();
-        request.setAttribute("message", "Volunteer is Updated");
         request.setAttribute("volunteer", volunteers);
 //        request.setAttribute("type", type);
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/volunteer/list.jsp");

@@ -2,6 +2,7 @@ package controller;
 
 import dao.SubcribersDAO;
 import model.Subcribers;
+import service.ValidateHelper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,12 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 @WebServlet(name = "SubcriberServlet", urlPatterns = "/subcriber")
 public class SubcriberServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private SubcribersDAO subcribersDAO;
+    private ValidateHelper validateHelper = new ValidateHelper();
 
 
     public void init() {
@@ -122,8 +125,6 @@ public class SubcriberServlet extends HttpServlet {
     }
 
 
-
-
     private void viewSubcriber(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         int id = Integer.parseInt(request.getParameter("id"));
@@ -175,10 +176,16 @@ public class SubcriberServlet extends HttpServlet {
         String email = request.getParameter("email");
         String mobile = request.getParameter("mobile");
         Subcribers subcriber = new Subcribers(firstName, lastName, email, mobile);
-        subcribersDAO.add(subcriber);
+        HashMap<String, String> validate = validateHelper.validationSubcriber(firstName, lastName, mobile, email);
+        if (validate.size() > 0) {
+            request.setAttribute("validate", validate);
+        } else {
+            subcribersDAO.add(subcriber);
+            request.setAttribute("message", "A new Subcriber is added!");
+        }
+
         List<Subcribers> subcribers = subcribersDAO.findAll();
         request.setAttribute("subcriber", subcribers);
-        request.setAttribute("message", "A new Subcriber is added!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/subcriber/list.jsp");
         dispatcher.forward(request, response);
     }
@@ -191,11 +198,16 @@ public class SubcriberServlet extends HttpServlet {
         String email = request.getParameter("email");
         String mobile = request.getParameter("mobile");
         Subcribers subcriber = new Subcribers(id, firstName, lastName, email, mobile);
-        subcribersDAO.update(subcriber);
+        HashMap<String, String> validate = validateHelper.validationSubcriber(firstName, lastName, mobile, email);
+        if (validate.size() > 0) {
+            request.setAttribute("validate", validate);
+        } else {
+            subcribersDAO.update(subcriber);
+            request.setAttribute("message", "Subcriber is updated!");
+        }
 
         List<Subcribers> subcribers = subcribersDAO.findAll();
         request.setAttribute("subcriber", subcribers);
-        request.setAttribute("message", "Subcriber is updated!");
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/subcriber/list.jsp");
         dispatcher.forward(request, response);
 
