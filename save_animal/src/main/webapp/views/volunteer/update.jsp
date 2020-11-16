@@ -57,28 +57,39 @@
     <aside class="menu-sidebar2">
         <div class="logo">
             <a href="#">
-                <img src="/images/icon/logo-white.png" alt="Cool Admin"/>
+                <img src="/images/icon/logo-white.png" alt="Cool Admin" />
             </a>
         </div>
         <div class="menu-sidebar2__content js-scrollbar1">
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
+                    <li class="has-sub">
+                        <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/animal"><i class="fas fa-table"></i>Animals</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/articles"><i class="fas fa-table"></i>Articles</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/employees"><i class="fas fa-table"></i>Employees</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
+                    </li>
                     <li class="active has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/volunteer"/>
-                        <i class="fas fa-table"></i>Volunteers
-                        </a>
+                        <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
                     </li>
                     <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/animal">
-                            <i class="fas fa-table"></i>Animals
-                        </a>
+                        <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                     </li>
-                    <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/subcriber">
-                            <i class="fas fa-table"></i>Subcribers
-                        </a>
-                    </li>
-
                 </ul>
             </nav>
         </div>
@@ -94,55 +105,15 @@
                     <div class="header-wrap2">
                         <div class="logo d-block d-lg-none">
                             <a href="#">
-                                <img src="/images/icon/logo-white.png" alt="CoolAdmin"/>
+                                <img src="/images/icon/logo-white.png" alt="CoolAdmin" />
                             </a>
                         </div>
                         <div class="header-button2">
                             <div class="header-button-item js-item-menu">
                                 <form action="" method="post">
-                                    <input style="width: 20vw; border-bottom: white solid 1px; background: none; font-size: medium; "
-                                           type="text" name="search" placeholder="Search here...">
-                                    <i class="button" style="font-size: medium"></i><i
-                                        class="zmdi zmdi-search ml-2"></i>
+                                    <input style="width: 20vw; border-bottom: white solid 1px; background: none; font-size: medium; " type="text" name="search" placeholder="Search here...">
+                                    <i class="button" style="font-size: medium"></i><i class="zmdi zmdi-search ml-2"></i>
                                 </form>
-                            </div>
-                            <div class="header-button-item has-noti js-item-menu">
-                                <i class="zmdi zmdi-notifications"></i>
-                                <div class="notifi-dropdown js-dropdown">
-                                    <div class="notifi__title">
-                                        <p>You have 3 Notifications</p>
-                                    </div>
-                                    <div class="notifi__item">
-                                        <div class="bg-c1 img-cir img-40">
-                                            <i class="zmdi zmdi-email-open"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p>You got a email notification</p>
-                                            <span class="date">April 12, 2018 06:50</span>
-                                        </div>
-                                    </div>
-                                    <div class="notifi__item">
-                                        <div class="bg-c2 img-cir img-40">
-                                            <i class="zmdi zmdi-account-box"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p>Your account has been blocked</p>
-                                            <span class="date">April 12, 2018 06:50</span>
-                                        </div>
-                                    </div>
-                                    <div class="notifi__item">
-                                        <div class="bg-c3 img-cir img-40">
-                                            <i class="zmdi zmdi-file-text"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p>You got a new file</p>
-                                            <span class="date">April 12, 2018 06:50</span>
-                                        </div>
-                                    </div>
-                                    <div class="notifi__footer">
-                                        <a href="#">All notifications</a>
-                                    </div>
-                                </div>
                             </div>
                             <div class="header-button-item mr-0 js-sidebar-btn">
                                 <i class="zmdi zmdi-menu"></i>
@@ -150,16 +121,10 @@
                             <div class="setting-menu js-right-sidebar d-none d-lg-block">
                                 <div class="account-dropdown__body">
                                     <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-account"></i>Account</a>
+                                        <a href="/users?action=logout"/><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
                                     </div>
                                     <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-settings"></i>Logout</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-settings"></i>Setting</a>
+                                        <a href="/users?action=update"/><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
                                     </div>
                                 </div>
                             </div>
@@ -171,26 +136,44 @@
         <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/logo-white.png" alt="Cool Admin"/>
+                    <img src="images/icon/logo-white.png" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar2__content js-scrollbar2">
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
+                        <li class="has-sub">
+                            <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/animal"><i class="fas fa-table"></i>Animals</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/articles"><i class="fas fa-table"></i>Articles</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/employees"><i class="fas fa-table"></i>Employees</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
+                        </li>
                         <li class="active has-sub">
-                            <a class="js-arrow" href="${pageContext.request.contextPath}/volunteer">
-                                <i class="fas fa-table"></i>Volunteers
-                            </a>
+                            <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="${pageContext.request.contextPath}/animal">
-                                <i class="fas fa-table"></i>Animals
-                            </a>
+                            <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="${pageContext.request.contextPath}/subcriber">
-                                <i class="fas fa-table"></i>Subcribers
-                            </a>
+                            <a href="/users?action=logout"/><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/users?action=update"/><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
                         </li>
                     </ul>
                 </nav>
@@ -206,8 +189,7 @@
                         <div class="col-sm-12">
                             <div class="au-breadcrumb-content">
                                 <div class="au-breadcrumb-left">
-                                    <a class="btn btn-primary btn-sm"
-                                       href="${pageContext.request.contextPath}/volunteer">
+                                    <a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/volunteer">
                                         <i class="fas fa-undo mr-1"></i>Back to Dashboard</a>
                                 </div>
                             </div>

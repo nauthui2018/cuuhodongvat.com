@@ -61,25 +61,32 @@
         <div class="menu-sidebar2__content js-scrollbar1">
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
+                    <li class="has-sub">
+                        <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/animal"><i class="fas fa-table"></i>Animals</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/articles"><i class="fas fa-table"></i>Articles</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/employees"><i class="fas fa-table"></i>Employees</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
+                    </li>
                     <li class="active has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/customers"/>
-                        <i class="fas fa-table"></i>Customers
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/provinces">
-                            <i class="fas fa-table"></i>Provinces
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/ranks">
-                            <i class="fas fa-table"></i>Ranks
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="js-arrow" href="${pageContext.request.contextPath}/users">
-                            <i class="fas fa-table"></i>Users
-                        </a>
+                        <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                     </li>
                 </ul>
             </nav>
@@ -105,44 +112,6 @@
                                     <input style="width: 20vw; border-bottom: white solid 1px; background: none; font-size: medium; " type="text" name="search" placeholder="Search here...">
                                     <i class="button" style="font-size: medium"></i><i class="zmdi zmdi-search ml-2"></i>
                                 </form>
-                            </div>
-                            <div class="header-button-item has-noti js-item-menu">
-                                <i class="zmdi zmdi-notifications"></i>
-                                <div class="notifi-dropdown js-dropdown">
-                                    <div class="notifi__title">
-                                        <p>You have 3 Notifications</p>
-                                    </div>
-                                    <div class="notifi__item">
-                                        <div class="bg-c1 img-cir img-40">
-                                            <i class="zmdi zmdi-email-open"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p>You got a email notification</p>
-                                            <span class="date">April 12, 2018 06:50</span>
-                                        </div>
-                                    </div>
-                                    <div class="notifi__item">
-                                        <div class="bg-c2 img-cir img-40">
-                                            <i class="zmdi zmdi-account-box"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p>Your account has been blocked</p>
-                                            <span class="date">April 12, 2018 06:50</span>
-                                        </div>
-                                    </div>
-                                    <div class="notifi__item">
-                                        <div class="bg-c3 img-cir img-40">
-                                            <i class="zmdi zmdi-file-text"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p>You got a new file</p>
-                                            <span class="date">April 12, 2018 06:50</span>
-                                        </div>
-                                    </div>
-                                    <div class="notifi__footer">
-                                        <a href="#">All notifications</a>
-                                    </div>
-                                </div>
                             </div>
                             <div class="header-button-item mr-0 js-sidebar-btn">
                                 <i class="zmdi zmdi-menu"></i>
@@ -177,25 +146,32 @@
             <div class="menu-sidebar2__content js-scrollbar2">
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
+                        <li class="has-sub">
+                            <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/animal"><i class="fas fa-table"></i>Animals</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/articles"><i class="fas fa-table"></i>Articles</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/employees"><i class="fas fa-table"></i>Employees</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
+                        </li>
                         <li class="active has-sub">
-                            <a class="js-arrow" href="${pageContext.request.contextPath}/customers">
-                                <i class="fas fa-table"></i>Customers
-                            </a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="${pageContext.request.contextPath}/provinces">
-                                <i class="fas fa-table"></i>Users
-                            </a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="${pageContext.request.contextPath}/ranks">
-                                <i class="fas fa-table"></i>Ranks
-                            </a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="${pageContext.request.contextPath}/users">
-                                <i class="fas fa-table"></i>Users
-                            </a>
+                            <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                         </li>
                     </ul>
                 </nav>
@@ -211,7 +187,7 @@
                         <div class="col-sm-12">
                             <div class="au-breadcrumb-content">
                                 <div class="au-breadcrumb-left">
-                                    <a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/customers">
+                                    <a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/users?action=listUsers">
                                         <i class="fas fa-undo mr-1"></i>Back to Dashboard</a>
                                 </div>
                             </div>
@@ -234,69 +210,29 @@
                                         <table class="table table-borderless table-striped table-earning">
                                             <tbody>
                                             <tr>
+                                                <td class="text-right" style="padding-right: 0">Username:</td>
+                                                <td class="text-left">${user.userUsername}</td>
+                                            </tr>
+                                            <tr>
                                                 <td class="text-right" style="padding-right: 0; width: 30%">Full Name:</td>
-                                                <td class="text-left">${customer.firstName} ${customer.lastName}</td>
+                                                <td class="text-left">${employee.employeeName}</td>
                                             </tr>
                                             <tr>
                                                 <td class="text-right" style="padding-right: 0">Gender:</td>
-                                                <td class="text-left">${customer.viewGender(customer.gender)}</td>
+                                                <td class="text-left">${employee.employeeGender}</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-right" style="padding-right: 0">DOB:</td>
-                                                <td class="text-left">${customer.dob}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-right" style="padding-right: 0">Mobile:</td>
-                                                <td class="text-left">${customer.mobile}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-right" style="padding-right: 0">DOB</td>
-                                                <td class="text-left">${customer.dob}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-right" style="padding-right: 0">Address:</td>
-                                                <td class="text-left">${customer.address}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-right" style="padding-right: 0">Email</td>
-                                                <td class="text-left">${customer.email}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-right" style="padding-right: 0">Province:</td>
-                                                <td class="text-left">
-                                                    <c:forEach items="${listProvince}" var="item">
-                                                        <c:if test="${item.provinceID==customer.provinceID}">
-                                                            ${item.provinceName}
-                                                        </c:if>
-                                                    </c:forEach>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-right" style="padding-right: 0">Total Order:</td>
-                                                <td class="text-left">${customer.totalOrders}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-right" style="padding-right: 0">Total Amount:</td>
-                                                <td class="text-left">${customer.totalAmounts}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-right" style="padding-right: 0">Rank:</td>
-                                                <td class="text-left">
-                                                    <c:forEach items="${listRank}" var="item">
-                                                        <c:if test="${item.rankID==customer.rankID}">
-                                                            ${item.rankName}
-                                                        </c:if>
-                                                    </c:forEach>
-                                                </td>
+                                                <td class="text-right" style="padding-right: 0">Position:</td>
+                                                <td class="text-left">${employee.employeePosition}</td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <form action="" method="post" class="form-horizontal">
                                         <div class="row form-group">
-                                            <input value="${customer.getCustomerID()}" type="hidden" name="customerID" class="form-control">
+                                            <input value="${user.getuserID()}" type="hidden" name="userID" class="form-control">
                                             <div class="col-12"  align="center">
-                                                <a type="reset" class="btn btn-warning btn-sm" href="/customers" style="width: 90px">
+                                                <a type="reset" class="btn btn-warning btn-sm" href="/users?action=listUsers" style="width: 90px">
                                                     <i class="fa fa-ban mr-1"></i>Cancel</a>
                                                 <button type="submit" class="btn btn-danger btn-sm ml-3" style="width: 90px; color: black">
                                                     <i class="fas fa-trash mr-1"></i>Delete</button>

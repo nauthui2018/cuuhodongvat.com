@@ -97,7 +97,7 @@ public class ArticleServlet extends HttpServlet {
             request.setAttribute("listArticles", listArticles);
             dispatcher = request.getRequestDispatcher("views/article/listArticles.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -114,7 +114,7 @@ public class ArticleServlet extends HttpServlet {
             request.setAttribute("articleTitle", articleTitle);
             dispatcher = request.getRequestDispatcher("views/article/listArticles.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -131,7 +131,7 @@ public class ArticleServlet extends HttpServlet {
             request.setAttribute("searchName", searchName);
             dispatcher = request.getRequestDispatcher("views/article/listArticles.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -148,7 +148,7 @@ public class ArticleServlet extends HttpServlet {
             request.setAttribute("articleAuthor", articleAuthor);
             dispatcher = request.getRequestDispatcher("views/article/listArticles.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -164,7 +164,7 @@ public class ArticleServlet extends HttpServlet {
             request.setAttribute("article", article);
             dispatcher = request.getRequestDispatcher("views/article/viewArticle.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -177,7 +177,7 @@ public class ArticleServlet extends HttpServlet {
         if (user != null) {
             dispatcher = request.getRequestDispatcher("views/article/addArticle.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -193,7 +193,7 @@ public class ArticleServlet extends HttpServlet {
             request.setAttribute("article", article);
             dispatcher = request.getRequestDispatcher("views/article/updateArticle.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -209,7 +209,7 @@ public class ArticleServlet extends HttpServlet {
             request.setAttribute("article", article);
             dispatcher = request.getRequestDispatcher("views/article/deleteArticle.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -242,7 +242,7 @@ public class ArticleServlet extends HttpServlet {
                 dispatcher = request.getRequestDispatcher("views/article/addArticle.jsp");
             }
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -277,7 +277,7 @@ public class ArticleServlet extends HttpServlet {
                 dispatcher = request.getRequestDispatcher("views/article/updateArticle.jsp");
             }
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -296,7 +296,7 @@ public class ArticleServlet extends HttpServlet {
             request.setAttribute("message", "Article is deleted!");
             dispatcher = request.getRequestDispatcher("views/article/listArticles.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }

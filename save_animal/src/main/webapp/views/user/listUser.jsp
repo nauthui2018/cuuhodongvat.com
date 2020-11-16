@@ -63,16 +63,31 @@
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li class="has-sub">
-                        <a href="/customers"/><i class="fas fa-table"></i>Customers</a>
+                        <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
                     </li>
                     <li class="has-sub">
-                        <a href="/provinces"><i class="fas fa-table"></i>Provinces</a>
+                        <a href="/animal"><i class="fas fa-table"></i>Animals</a>
                     </li>
                     <li class="has-sub">
-                        <a href="/ranks"><i class="fas fa-table"></i>Ranks</a>
+                        <a href="/articles"><i class="fas fa-table"></i>Articles</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/employees"><i class="fas fa-table"></i>Employees</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
                     </li>
                     <li class="active has-sub">
-                        <a href="/users?action=list"><i class="fas fa-table"></i>Users</a>
+                        <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                     </li>
                 </ul>
             </nav>
@@ -94,7 +109,7 @@
                         </div>
                         <div class="header-button2">
                             <div class="header-button-item js-item-menu">
-                                <form id="myForm" action="${pageContext.request.contextPath}/customers?action=searchName" method="post">
+                                <form id="myForm" action="${pageContext.request.contextPath}/users?action=searchName" method="post">
                                     <input style="width: 20vw; border-bottom: white solid 1px; background: none; font-size: medium;" type="text" name="searchName" placeholder="Search here..." value="${requestScope["searchName"]}">
                                     <button type="submit" class="btn btn-outline-light" onclick="document.getElementById('myForm').submit();">
                                         <i class="fas fa-search"></i></button>
@@ -114,9 +129,6 @@
                                     <div class="account-dropdown__item">
                                         <a onclick="window.location.href='/users?action=updatePassword'"><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
                                     </div>
-                                    <div class="account-dropdown__item">
-                                        <a onclick="window.location.href='/users?action=updateInformation'"><i class="zmdi zmdi-settings mr-3"></i>Update Information</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -133,17 +145,32 @@
             <div class="menu-sidebar2__content js-scrollbar2">
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
+                        <li class="has-sub">
+                            <a href="/activities"/><i class="fas fa-table"></i>Activities</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/animal"><i class="fas fa-table"></i>Animals</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/articles"><i class="fas fa-table"></i>Articles</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/employees"><i class="fas fa-table"></i>Employees</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/reports"><i class="fas fa-table"></i>Reports</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/subcriber"><i class="fas fa-table"></i>Subcribers</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/volunteer"><i class="fas fa-table"></i>Volunteers</a>
+                        </li>
                         <li class="active has-sub">
-                            <a href="/customers"/><i class="fas fa-table"></i>Customers</a>
-                        </li>
-                        <li class="has-sub">
-                            <a href="/provinces"/><i class="fas fa-table"></i>Provinces</a>
-                        </li>
-                        <li class="has-sub">
-                            <a href="/ranks"/><i class="fas fa-table"></i>Ranks</a>
-                        </li>
-                        <li class="has-sub">
-                            <a href="/users?action=list"/><i class="fas fa-table"></i>Users</a>
+                            <a href="/users?action=listUsers"><i class="fas fa-table"></i>Users</a>
                         </li>
                         <li class="has-sub">
                             <a href="/users?action=view"/><i class="zmdi zmdi-account mr-3"></i>Account</a>
@@ -152,10 +179,7 @@
                             <a href="/users?action=logout"/><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
                         </li>
                         <li class="has-sub">
-                            <a href="/users?action=updatePassword"/><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
-                        </li>
-                        <li class="has-sub">
-                            <a href="/users?action=updateInformation"/><i class="zmdi zmdi-settings mr-3 mr-3"></i>Update Information</a>
+                            <a href="/users?action=update"/><i class="zmdi zmdi-settings mr-3"></i>Change Password</a>
                         </li>
                     </ul>
                 </nav>
@@ -170,8 +194,10 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="au-breadcrumb-content">
-                                <div class="au-breadcrumb-left">
-                                    <a class="btn btn-primary btn-sm" href="/users?action=list">All Users</a>
+                                <div class="au-breadcrumb-left mt-1">
+                                    <a class="btn btn-primary btn-sm"
+                                       href="${pageContext.request.contextPath}/users?action=add">
+                                        <i class="zmdi zmdi-plus mr-1"></i>New User</a>
                                 </div>
                                 <c:if test='${requestScope["message"] != null}'>
                                     <div class="alert alert-dismissible m-b-0" style="color: green">
@@ -203,47 +229,41 @@
                                         <th>#</th>
                                         <th>Username</th>
                                         <th>Full Name</th>
-                                        <th>Rank</th>
-                                        <th>Orders</th>
-                                        <th>Amounts</th>
+                                        <th>Gender</th>
+                                        <th>Position</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="user" items="${listUser}" varStatus="loop">
+                                    <c:forEach var="user" items="${listUsers}" varStatus="loop">
                                         <tr>
                                             <td>${loop.index+1}</td>
                                             <td><a href="users?action=view">${user.userUsername}</a></td>
                                             <td>
-                                                <c:forEach items="${listCustomer}" var="customer">
-                                                    <c:if test="${user.customerID==customer.getCustomerID()}">
-                                                        ${customer.firstName} ${customer.lastName}
+                                                <c:forEach items="${listEmployees}" var="employee">
+                                                    <c:if test="${employee.employeeID==user.getEmployeeID()}">
+                                                        ${employee.employeeName}
                                                     </c:if>
                                                 </c:forEach>
                                             </td>
                                             <td>
-                                                <c:forEach items="${listCustomer}" var="customer">
-                                                    <c:if test="${user.customerID==customer.getCustomerID()}">
-                                                        <c:forEach items="${listRank}" var="rank">
-                                                            <c:if test="${rank.rankID==customer.getRankID()}">
-                                                                ${rank.rankName}
-                                                            </c:if>
-                                                        </c:forEach>
+                                                <c:forEach items="${listEmployees}" var="employee">
+                                                    <c:if test="${employee.employeeID==user.getEmployeeID()}">
+                                                        ${employee.employeeGender}
                                                     </c:if>
                                                 </c:forEach>
                                             </td>
                                             <td>
-                                                <c:forEach items="${listCustomer}" var="customer">
-                                                    <c:if test="${user.customerID==customer.getCustomerID()}">
-                                                        ${customer.totalOrders}
+                                                <c:forEach items="${listEmployees}" var="employee">
+                                                    <c:if test="${employee.employeeID==user.getEmployeeID()}">
+                                                        ${employee.employeePosition}
                                                     </c:if>
                                                 </c:forEach>
                                             </td>
                                             <td>
-                                                <c:forEach items="${listCustomer}" var="customer">
-                                                    <c:if test="${user.customerID==customer.getCustomerID()}">
-                                                        ${customer.totalAmounts}
-                                                    </c:if>
-                                                </c:forEach>
+                                                <a href="/users?action=view&userID=${user.userID}"><i class="zmdi zmdi-eye" style="color: blue" title="View"></i></a>
+                                                <a href="/users?action=update&userID=${user.userID}"><i class="zmdi zmdi-edit ml-2" style="color: green" title="Edit"></i></a>
+                                                <a href="/users?action=delete&userID=${user.userID}"><i class="zmdi zmdi-delete ml-2" style="color: red" title="Delete"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>

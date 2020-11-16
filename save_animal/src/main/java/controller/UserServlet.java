@@ -1,6 +1,8 @@
 package controller;
 
+import model.Employee;
 import model.User;
+import service.EmployeeService;
 import service.UserService;
 
 import javax.servlet.RequestDispatcher;
@@ -18,6 +20,7 @@ import java.util.List;
 @WebServlet(name = "UserServlet", urlPatterns = "/users")
 public class UserServlet extends HttpServlet {
     private UserService userService = new UserService();
+    private EmployeeService employeeService = new EmployeeService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -127,9 +130,11 @@ public class UserServlet extends HttpServlet {
         if (user != null) {
             List<User> listUsers = userService.findAll();
             request.setAttribute("listUsers", listUsers);
+            List<Employee> listEmployees = employeeService.findAll();
+            request.setAttribute("listEmployees", listEmployees);
             dispatcher = request.getRequestDispatcher("views/user/listUser.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -160,7 +165,7 @@ public class UserServlet extends HttpServlet {
                 userService.add(user);
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                dispatcher = request.getRequestDispatcher("views/home.jsp");
+                dispatcher = request.getRequestDispatcher("views/activity/listActivities.jsp");
             } else {
                 request.setAttribute("validationResult", validationResult);
                 request.setAttribute("user", user);
@@ -205,7 +210,7 @@ public class UserServlet extends HttpServlet {
                         newUser.setUserActive(true);
                         userService.update(newUser);
                         session.setAttribute("user", newUser);
-                        dispatcher = request.getRequestDispatcher("views/home.jsp");
+                        dispatcher = request.getRequestDispatcher("views/activity/listActivities.jsp");
                     } else {
                         request.setAttribute("validationResult", validationResult);
                         request.setAttribute("user", newUser);
@@ -222,7 +227,7 @@ public class UserServlet extends HttpServlet {
                 dispatcher = request.getRequestDispatcher("/views/user/updateUser.jsp");
             }
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
