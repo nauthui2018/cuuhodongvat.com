@@ -64,6 +64,33 @@
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li class="active has-sub">
+                        <a class="js-arrow" href="${pageContext.request.contextPath}/employees"/>
+                        <i class="fas fa-table"></i>Customers
+                        </a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="${pageContext.request.contextPath}/reports">
+                            <i class="fas fa-table"></i>Reports
+                        </a>
+                    <li class="has-sub">
+                        <a href="/donors"/><i class="fas fa-table"></i>Donors</a>
+                    </li>
+                    <li class="active has-sub">
+                        <a class="js-arrow" href="${pageContext.request.contextPath}/activities"/>
+                        <i class="fas fa-table"></i>Activities
+                        </a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="${pageContext.request.contextPath}/articles">
+                            <i class="fas fa-table"></i>Articles
+                        </a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="${pageContext.request.contextPath}/users">
+                            <i class="fas fa-table"></i>Users
+                        </a>
+                    </li>
+                    <li class="active has-sub">
                         <a class="js-arrow" href="${pageContext.request.contextPath}/volunteer"/>
                         <i class="fas fa-table"></i>Volunters
                         </a>
