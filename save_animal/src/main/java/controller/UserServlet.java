@@ -105,7 +105,7 @@ public class UserServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
                 request.setAttribute("message", "Welcome back");
-                dispatcher = request.getRequestDispatcher("views/home.jsp");
+                dispatcher = request.getRequestDispatcher("views/activity/listActivities.jsp");
             } else {
                 request.setAttribute("userUsername", userUsername);
                 request.setAttribute("incorrectPassword", "Incorrect password. Please try again!");
@@ -160,7 +160,7 @@ public class UserServlet extends HttpServlet {
                 userService.add(user);
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                dispatcher = request.getRequestDispatcher("views/home.jsp");
+                dispatcher = request.getRequestDispatcher("views/user/listUsers.jsp");
             } else {
                 request.setAttribute("validationResult", validationResult);
                 request.setAttribute("user", user);
@@ -205,7 +205,7 @@ public class UserServlet extends HttpServlet {
                         newUser.setUserActive(true);
                         userService.update(newUser);
                         session.setAttribute("user", newUser);
-                        dispatcher = request.getRequestDispatcher("views/home.jsp");
+                        dispatcher = request.getRequestDispatcher("views/user/listUsers.jsp");
                     } else {
                         request.setAttribute("validationResult", validationResult);
                         request.setAttribute("user", newUser);
@@ -222,7 +222,7 @@ public class UserServlet extends HttpServlet {
                 dispatcher = request.getRequestDispatcher("/views/user/updateUser.jsp");
             }
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }

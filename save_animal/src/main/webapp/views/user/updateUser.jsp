@@ -71,7 +71,11 @@
                             </label>
                             <div class="form-group">
                                 <label>New Password</label>
-                                <input class="au-input au-input--full" type="password" name="newPassword" placeholder="New Password" required>
+                                <input class="au-input au-input--full" type="password" name="newPassword1" placeholder="New Password" required>
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input class="au-input au-input--full" type="password" name="newPassword1" placeholder="Confirm Password" required>
                             </div>
                             <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Update Password</button>
                         </form>
