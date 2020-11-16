@@ -1,8 +1,10 @@
 package controller;
 
 import model.Activity;
+import model.Donor;
 import model.User;
 import service.ActivityService;
+import service.DonorService;
 import service.UserService;
 import service.ValidateHelper;
 
@@ -23,6 +25,7 @@ public class ActivityServlet extends HttpServlet {
     private ActivityService activityService = new ActivityService();
     private UserService userService = new UserService();
     private ValidateHelper validateHelper = new ValidateHelper();
+    private DonorService donorService = new DonorService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -95,11 +98,11 @@ public class ActivityServlet extends HttpServlet {
         if (user != null) {
             List<Activity> listActivities = activityService.findAll();
             request.setAttribute("listActivities", listActivities);
-//            List<Sponsor> listSponsors = sponsorService.findAll();
-//            request.setAttribute("listSponsors", listSponsors);
+            List<Donor> listDonors = donorService.findAll();
+            request.setAttribute("listDonors", listDonors);
             dispatcher = request.getRequestDispatcher("views/activity/listActivities.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/activity/listActivities.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -113,12 +116,12 @@ public class ActivityServlet extends HttpServlet {
             String searchName = request.getParameter("searchName");
             List<Activity> listActivities = activityService.selectByName(searchName);
             request.setAttribute("listActivities", listActivities);
-//            List<Sponsor> listSponsors = sponsorService.findAll();
-//            request.setAttribute("listSponsors", listSponsors);
+            List<Donor> listDonors = donorService.findAll();
+            request.setAttribute("listDonors", listDonors);
             request.setAttribute("searchName", searchName);
             dispatcher = request.getRequestDispatcher("views/activity/listActivities.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -132,11 +135,11 @@ public class ActivityServlet extends HttpServlet {
             String activityTarget = request.getParameter("activityTarget");
             List<Activity> listActivities = activityService.selectByTarget(activityTarget);
             request.setAttribute("listActivities", listActivities);
-//            List<Sponsor> listSponsors = sponsorService.findAll();
-//            request.setAttribute("listSponsors", listSponsors);
+            List<Donor> listDonors = donorService.findAll();
+            request.setAttribute("listDonors", listDonors);
             dispatcher = request.getRequestDispatcher("views/activity/listActivities.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -150,11 +153,11 @@ public class ActivityServlet extends HttpServlet {
             int activityID = Integer.parseInt(request.getParameter("activityID"));
             Activity activity = activityService.findById(activityID);
             request.setAttribute("activity", activity);
-//            List<Sponsor> listSponsors = sponsorService.findAll();
-//            request.setAttribute("listSponsors", listSponsors);
+            List<Donor> listDonors = donorService.findAll();
+            request.setAttribute("listDonors", listDonors);
             dispatcher = request.getRequestDispatcher("views/activity/viewActivity.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -165,11 +168,11 @@ public class ActivityServlet extends HttpServlet {
         User user = (User)session.getAttribute("user");
         RequestDispatcher dispatcher;
         if (user != null) {
-//            List<Sponsor> listSponsors = sponsorService.findAll();
-//            request.setAttribute("listSponsors", listSponsors);
+            List<Donor> listDonors = donorService.findAll();
+            request.setAttribute("listDonors", listDonors);
             dispatcher = request.getRequestDispatcher("views/activity/addActivity.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -180,14 +183,14 @@ public class ActivityServlet extends HttpServlet {
         User user = (User)session.getAttribute("user");
         RequestDispatcher dispatcher;
         if (user != null) {
-//            List<Sponsor> listSponsors = sponsorService.findAll();
-//            request.setAttribute("listSponsors", listSponsors);
+            List<Donor> listDonors = donorService.findAll();
+            request.setAttribute("listDonors", listDonors);
             int activityID = Integer.parseInt(request.getParameter("activityID"));
             Activity activity = activityService.findById(activityID);
             request.setAttribute("activity", activity);
             dispatcher = request.getRequestDispatcher("views/activity/updateActivity.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -198,14 +201,14 @@ public class ActivityServlet extends HttpServlet {
         User user = (User)session.getAttribute("user");
         RequestDispatcher dispatcher;
         if (user != null) {
-//            List<Sponsor> listSponsors = sponsorService.findAll();
-//            request.setAttribute("listSponsors", listSponsors);
+            List<Donor> listDonors = donorService.findAll();
+            request.setAttribute("listDonors", listDonors);
             int activityID = Integer.parseInt(request.getParameter("activityID"));
             Activity activity = activityService.findById(activityID);
             request.setAttribute("activity", activity);
             dispatcher = request.getRequestDispatcher("views/activity/deleteActivity.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -224,8 +227,8 @@ public class ActivityServlet extends HttpServlet {
             Activity activity = new Activity();
             HashMap<String, String> validationResult = new HashMap<>();
             validationResult = activity.validationActivity(activityName, activityDescription, activityMember, activityTarget, sponsorID);
-//            List<Sponsor> listSponsors = sponsorService.findAll();
-//            request.setAttribute("listSponsors", listSponsors);
+            List<Donor> listDonors = donorService.findAll();
+            request.setAttribute("listDonors", listDonors);
             if (validationResult.size() == 0) {
                 activityService.add(activity);
                 List<Activity> listActivities = activityService.findAll();
@@ -238,7 +241,7 @@ public class ActivityServlet extends HttpServlet {
                 dispatcher = request.getRequestDispatcher("views/activity/addActivity.jsp");
             }
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -258,8 +261,8 @@ public class ActivityServlet extends HttpServlet {
             Activity activity = new Activity();
             HashMap<String, String> validationResult = new HashMap<>();
             validationResult = activity.validationActivity(activityName, activityDescription, activityMember, activityTarget, sponsorID);
-//            List<Sponsor> listSponsors = sponsorService.findAll();
-//            request.setAttribute("listSponsors", listSponsors);
+            List<Donor> listDonors = donorService.findAll();
+            request.setAttribute("listDonors", listDonors);
             if (validationResult.size() == 0) {
                 activity.setActivityID(activityID);
                 activityService.update(activity);
@@ -273,7 +276,7 @@ public class ActivityServlet extends HttpServlet {
                 dispatcher = request.getRequestDispatcher("views/activity/updateActivity.jsp");
             }
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -289,12 +292,12 @@ public class ActivityServlet extends HttpServlet {
             activityService.delete(activity);
             List<Activity> listActivities = activityService.findAll();
             request.setAttribute("listActivities", listActivities);
-//            List<Sponsor> listSponsors = sponsorService.findAll();
-//            request.setAttribute("listSponsors", listSponsors);
+            List<Donor> listDonors = donorService.findAll();
+            request.setAttribute("listDonors", listDonors);
             request.setAttribute("message", "Activity is deleted!");
             dispatcher = request.getRequestDispatcher("views/activity/listActivities.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("views/home.jsp");
+            dispatcher = request.getRequestDispatcher("views/user/login.jsp");
         }
         dispatcher.forward(request, response);
     }
